@@ -101,18 +101,12 @@ public partial class DbGestgrhContext : DbContext
             entity.HasIndex(e => e.Email, "email").IsUnique();
 
             entity.Property(e => e.IdEmploye).HasColumnName("idEmploye");
-            entity.Property(e => e.Departement)
-                .HasMaxLength(50)
-                .HasColumnName("departement");
             entity.Property(e => e.Email)
                 .HasMaxLength(60)
                 .HasColumnName("email");
             entity.Property(e => e.Nom)
                 .HasMaxLength(50)
                 .HasColumnName("nom");
-            entity.Property(e => e.Poste)
-                .HasMaxLength(50)
-                .HasColumnName("poste");
             entity.Property(e => e.Prenom)
                 .HasMaxLength(60)
                 .HasColumnName("prenom");

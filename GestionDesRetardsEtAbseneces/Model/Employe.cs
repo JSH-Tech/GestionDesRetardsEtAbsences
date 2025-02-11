@@ -13,10 +13,6 @@ public partial class Employe
 
     public string? Email { get; set; }
 
-    public string? Poste { get; set; }
-
-    public string? Departement { get; set; }
-
     public string? Statut { get; set; }
 
     public string? RoleEmploye { get; set; }
