@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="FenetreNotification" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Content="Gerer les Notifications" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
     </Grid>
 </Window>
