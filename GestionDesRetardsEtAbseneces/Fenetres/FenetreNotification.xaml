@@ -5,17 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
-        Title="FenetreNotification" Height="450" Width="800">
+        Title="NOTIFICATIONS" Height="450" Width="600" Background="SkyBlue">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height='Auto'></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Content="Gerer les Notifications" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <Label Content="Gerer les notifications" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30"/>
+
+        <WrapPanel Grid.Column="0" Grid.Row="1" Margin="30,0,0,0">
+            <Label Content="Type de notification"/>
+            <ComboBox Width="150" Name="ComboBox_TypeNotification">
+                <ComboBoxItem>Absence non justifiée</ComboBoxItem>
+                <ComboBoxItem>Retard enregistré</ComboBoxItem>
+                <ComboBoxItem>Demande de congé approuvée/refusée</ComboBoxItem>
+            </ComboBox>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Date d'envoie"/>
+            <DatePicker Name="fatPicker_DateEnvoie"/>
+        </WrapPanel>
+
+        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Height="100" Width="450" Margin="0,10,0,0">
+            <Label Content="Message"/>
+            <RichTextBox Name="txtBox_Message"/>
+        </DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0">
+            <Button Content="Envoyer" Name="Btn_Envoyer" Margin="0,0,10,0" Width="100"/>
+            <Button Content="Modifier" Name="Btn_Modifier" Margin="0,0,10,0" Width="100"/>
+            <Button Content="Supprimer" Name="Btn_Supprimer" Margin="0,0,10,0" Width="100"/>
+            <Button Content="Actualiser" Name="Btn_Actualiser" Margin="0,0,00,0" Width="100"/>
+        </StackPanel>
+
+        <WrapPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,10,0,0" HorizontalAlignment="Center">
+            <DataGrid Name="dataGridNotification">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Type de notification" Width="150"/>
+                    <DataGridTextColumn Header="Date d'envoie" Width="150"/>
+                    <DataGridTextColumn Header="Message" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </WrapPanel>
     </Grid>
 </Window>
