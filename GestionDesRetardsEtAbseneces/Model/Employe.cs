@@ -17,7 +17,11 @@ public partial class Employe
 
     public string? RoleEmploye { get; set; }
 
+    public string? MotDePasse { get; set; }
+
     public virtual ICollection<Absence> Absences { get; set; } = new List<Absence>();
+
+    public virtual ICollection<Authentification> Authentifications { get; set; } = new List<Authentification>();
 
     public virtual ICollection<Demandeconge> Demandeconges { get; set; } = new List<Demandeconge>();
 
