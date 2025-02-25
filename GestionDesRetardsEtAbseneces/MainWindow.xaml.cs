@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using GestionDesRetardsEtAbseneces.Fenetres;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,17 @@ namespace GestionDesRetardsEtAbseneces
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Ouvre la fenetre de gestion des rapports
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_Rapports_Click(object sender, RoutedEventArgs e)
+        {
+            FenetreRapport fenetreRapport = new FenetreRapport();
+            fenetreRapport.Show();
         }
     }
 }

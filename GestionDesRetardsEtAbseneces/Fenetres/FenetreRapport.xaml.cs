@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
 
 namespace GestionDesRetardsEtAbseneces.Fenetres
 {
@@ -18,7 +19,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         {
             InitializeComponent();
             rapportViewSource = (CollectionViewSource)FindResource(nameof(rapportViewSource));
-            employeViewSource = (CollectionViewSource) FindResource(nameof(employeViewSource));
+            employeViewSource = (CollectionViewSource)FindResource(nameof(employeViewSource));
             gestgrhContext.Database.EnsureCreated();
 
             //Chargement des donnees
@@ -35,7 +36,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         public (bool isValide, string? periodeRapport, int idEmploye, DateOnly deteGeneration, string contenuRapport)? RecupererInfos()
         {
             //Declaration des variables et recuperation des valeurs
-            ComboBoxItem periodeSelectionnee= (ComboBoxItem)ComboBoxPeriode.SelectedItem;
+            ComboBoxItem periodeSelectionnee = (ComboBoxItem)ComboBoxPeriode.SelectedItem;
             if (periodeSelectionnee is null)
             {
                 MessageBox.Show("Veuillez selectionner une periode");
@@ -73,6 +74,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             DatagridRapport.SelectedItem = null;
             Btn_Modifier.IsEnabled = false;
             Btn_Supprimer.IsEnabled = false;
+            Btn_Imprimer.IsEnabled = false;
         }
 
 
@@ -92,6 +94,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             {
                 Btn_Modifier.IsEnabled = DatagridRapport.SelectedItem != null;
                 Btn_Supprimer.IsEnabled = DatagridRapport.SelectedItem != null;
+                Btn_Imprimer.IsEnabled = DatagridRapport.SelectedItem != null;
                 ComboBoxPeriode.SelectedItem = rapportassiduite.PeriodeRapport;
                 ComboBoxEmploye.SelectedValue = rapportassiduite.IdEmploye;
                 DatePickerDateGeneration.SelectedDate = rapportassiduite.DateGeneration;
@@ -272,8 +275,56 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 //Imprimer le rapport
                 try
                 {
-                    MessageBox.Show("Impression du rapport en cours...");
-                    MessageBox.Show("Rapport imprimé avec succes");
+                    string? periodeRapport = rapportAImprimer.PeriodeRapport;
+                    string? nomEmploye = rapportAImprimer.IdEmployeNavigation.Nom;
+                    string? prenomEmploye = rapportAImprimer.IdEmployeNavigation.Prenom;
+                    string? dateGeneration = rapportAImprimer.DateGeneration.ToString();
+                    string? contenuRapport = rapportAImprimer.ContenuRapport;
+
+                    //Verication des informations du rapport
+                    if (periodeRapport is null || nomEmploye is null || prenomEmploye is null || dateGeneration is null || contenuRapport is null)
+                    {
+                        MessageBox.Show("Inform ations du rapport manquantes");
+                        return;
+                    }
+
+                    FlowDocument doc = new()
+                    {
+                        PageHeight = 1056, // Hauteur en points (8.5 x 11 pouces pour une feuille A4)
+                        PageWidth = 816,
+                        ColumnWidth = 816, // Largeur totale sans colonnes multiples
+                        FontFamily = new System.Windows.Media.FontFamily("Arial"),
+                        FontSize = 14,
+                        PagePadding = new Thickness(50)
+                    };
+
+                    doc.Blocks.Add(new Paragraph(new Run("Rapport d'assiduité"))
+                    {
+                        FontSize = 24,
+                        FontWeight = FontWeights.Bold,
+                        TextAlignment = TextAlignment.Center
+                    });
+
+                    doc.Blocks.Add(new Paragraph(new Run("Periode du rapport: " + periodeRapport)));
+                    doc.Blocks.Add(new Paragraph(new Run("Employé: " + nomEmploye + " " + prenomEmploye)));
+                    doc.Blocks.Add(new Paragraph(new Run("Date de generation: " + dateGeneration)));
+                    doc.Blocks.Add(new Paragraph(new Run("Contenu du rapport: ")));
+                    doc.Blocks.Add(new Paragraph(new Run(contenuRapport))
+                    {
+                        FontSize = 16,
+                        TextAlignment = TextAlignment.Justify,
+                        Margin = new Thickness(20, 10, 20, 10)
+                    });
+
+
+                    PrintDialog printDialog = new();
+                    if (printDialog.ShowDialog() == true)
+                    {
+                        MessageBox.Show("Impression du rapport en cours...");
+                        printDialog.PrintDocument(((IDocumentPaginatorSource)doc).DocumentPaginator, "Rapport d'assiduité");
+                        MessageBox.Show("Rapport imprimé avec succès !");
+
+                    }
                     ViderChamps();
                 }
                 catch (Exception ex)
@@ -282,5 +333,6 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     ViderChamps();
                 }
             }
+        }
     }
 }

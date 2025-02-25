@@ -1,33 +1,26 @@
-﻿<Window x:Class="GestionDesRetardsEtAbseneces.MainWindow"
+<Window x:Class="GestionDesRetardsEtAbseneces.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="800">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center">
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center"  Margin="0,50,0,0">
-                <Label Content="Formulaire de déclaration de congé" Foreground="Blue" Margin="0,0,0,0" FontSize="18" Height="50" Width="330" HorizontalAlignment="Center"/>
-                <Label Content="Nom Complet" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <TextBox Text="" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <Label Content="Type de congé" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <ComboBox Name="myComboBox" HorizontalAlignment="Center" FontSize="15" Height="30" Width="250" Margin="-60,0,0,0">
-                    <ComboBoxItem Content="Vacance (payé)"/>
-                    <ComboBoxItem Content="Maladie (non payé)"/>
-                    <ComboBoxItem Content="Maladie (payé)"/>
-                    <ComboBoxItem Content="Congé personnel (non payé)"/>
-                </ComboBox>
-                <Label Content="Date de début" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <DatePicker HorizontalAlignment="Center" FontSize="15" Height="30" Width="250" Margin="-60,0,0,0"/>
-                <Label Content="Date de fin" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <DatePicker HorizontalAlignment="Center" FontSize="15" Height="30" Width="250" Margin="-60,0,0,0"/>
-                <Label Content="Justificatif" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="15" Height="60" Width="250" Margin="-60,0,0,10"/>
-                <Button Content="Soumettre" HorizontalAlignment="Center" Background="Black" Foreground="White" FontSize="17" Height="30" Width="250" Click="Button_Click" Margin="-60,0,0,0"/>
-            </StackPanel>
-        </Border>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Gestion des retards et absences" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="30"/>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
+            <Button Content="Employes" Name="Btn_Employes" Margin="5"  />
+            <Button Content="Rapports" Name="Btn_Rapports" Margin="5" Click="Btn_Rapports_Click"  />
+            <Button Content="Notifications" Name="Btn_Notifications" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Window>
