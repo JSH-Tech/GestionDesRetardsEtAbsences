@@ -1,4 +1,4 @@
-﻿using GestionDesRetardsEtAbseneces.Model;
+using GestionDesRetardsEtAbseneces.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,7 +18,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         {
             InitializeComponent();
             rapportViewSource = (CollectionViewSource)FindResource(nameof(rapportViewSource));
-            employeViewSource = (CollectionViewSource)FindResource(nameof(employeViewSource));
+            employeViewSource = (CollectionViewSource) FindResource(nameof(employeViewSource));
             gestgrhContext.Database.EnsureCreated();
 
             //Chargement des donnees
@@ -35,7 +35,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         public (bool isValide, string? periodeRapport, int idEmploye, DateOnly deteGeneration, string contenuRapport)? RecupererInfos()
         {
             //Declaration des variables et recuperation des valeurs
-            ComboBoxItem periodeSelectionnee = (ComboBoxItem)ComboBoxPeriode.SelectedItem;
+            ComboBoxItem periodeSelectionnee= (ComboBoxItem)ComboBoxPeriode.SelectedItem;
             if (periodeSelectionnee is null)
             {
                 MessageBox.Show("Veuillez selectionner une periode");
@@ -282,6 +282,5 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     ViderChamps();
                 }
             }
-        }
     }
 }
