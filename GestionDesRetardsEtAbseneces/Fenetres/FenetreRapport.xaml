@@ -28,7 +28,7 @@
         
         <WrapPanel Grid.Column="0" Grid.Row="1" Margin="0,10,0,0">
             <Label Content="Periode du rapport"/>
-            <ComboBox Name="ComboBoxPeriode" Width="150" ItemsSource="{Binding Source={StaticResource employeViewSource}}">
+            <ComboBox Name="ComboBoxPeriode" Width="150">
                 <ComboBoxItem>Hebdomadaire</ComboBoxItem>
                 <ComboBoxItem>Mensuelle</ComboBoxItem>
                 <ComboBoxItem>Trimestrielle</ComboBoxItem>
@@ -56,8 +56,8 @@
             <Button Content="Generer" Name="Btn_Generer" Margin="0,0,10,0" Width="100" Click="Btn_Generer_Click"/>
             <Button Content="Modifier" Name="Btn_Modifier" Margin="0,0,10,0" Width="100" Click="Btn_Modifier_Click"/>
             <Button Content="Supprimer" Name="Btn_Supprimer" Margin="0,0,10,0" Width="100" Click="Btn_Supprimer_Click"/>
-            <Button Content="Actualiser" Name="Btn_Actualiser" Margin="0,0,10,0" Width="100" Click="Btn_Actualiser_Click"/>
             <Button Content="Imprimer" Name="Btn_Imprimer" Width="100" Click="Btn_Imprimer_Click"/>
+            <Button Content="Actualiser" Name="Btn_Actualiser" Margin="0,0,10,0" Width="100" Click="Btn_Actualiser_Click"/>
             
         </StackPanel>
 

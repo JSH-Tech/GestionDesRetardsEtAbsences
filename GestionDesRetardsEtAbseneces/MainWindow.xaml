@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Gestion des retards et absences" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="30"/>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
+            <Button Content="Employes" Name="Btn_Employes" Margin="5"  />
+            <Button Content="Rapports" Name="Btn_Rapports" Margin="5" Click="Btn_Rapports_Click"  />
+            <Button Content="Notifications" Name="Btn_Notifications" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Window>
