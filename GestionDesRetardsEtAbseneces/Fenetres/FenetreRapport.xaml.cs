@@ -1,4 +1,4 @@
-﻿using GestionDesRetardsEtAbseneces.Model;
+using GestionDesRetardsEtAbseneces.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
