@@ -17,6 +17,8 @@ public partial class DbGestgrhContext : DbContext
 
     public virtual DbSet<Absence> Absences { get; set; }
 
+    public virtual DbSet<Authentification> Authentifications { get; set; }
+
     public virtual DbSet<Demandeconge> Demandeconges { get; set; }
 
     public virtual DbSet<Employe> Employes { get; set; }
@@ -60,6 +62,40 @@ public partial class DbGestgrhContext : DbContext
                 .HasConstraintName("absence_ibfk_1");
         });
 
+        modelBuilder.Entity<Authentification>(entity =>
+        {
+            entity.HasKey(e => e.IdAuthentification).HasName("PRIMARY");
+
+            entity.ToTable("authentification");
+
+            entity.HasIndex(e => e.IdEmploye, "idEmploye");
+
+            entity.Property(e => e.IdAuthentification)
+                .HasComment("Primary Key")
+                .HasColumnName("idAuthentification");
+            entity.Property(e => e.DateDerniereConnexion)
+                .HasComment("Last Connection Date")
+                .HasColumnType("datetime");
+            entity.Property(e => e.DateExpiration)
+                .HasComment("Expiration Date")
+                .HasColumnType("datetime");
+            entity.Property(e => e.IdEmploye)
+                .HasComment("Foreign Key")
+                .HasColumnName("idEmploye");
+            entity.Property(e => e.MotDePasseHash)
+                .HasMaxLength(255)
+                .HasComment("Hashed Password");
+            entity.Property(e => e.NiveauAcces).HasComment("Access Level");
+            entity.Property(e => e.TokenSession)
+                .HasMaxLength(255)
+                .HasComment("Session Token");
+
+            entity.HasOne(d => d.IdEmployeNavigation).WithMany(p => p.Authentifications)
+                .HasForeignKey(d => d.IdEmploye)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("authentification_ibfk_1");
+        });
+
         modelBuilder.Entity<Demandeconge>(entity =>
         {
             entity.HasKey(e => e.IdDemande).HasName("PRIMARY");
@@ -101,18 +137,13 @@ public partial class DbGestgrhContext : DbContext
             entity.HasIndex(e => e.Email, "email").IsUnique();
 
             entity.Property(e => e.IdEmploye).HasColumnName("idEmploye");
-            entity.Property(e => e.Departement)
-                .HasMaxLength(50)
-                .HasColumnName("departement");
             entity.Property(e => e.Email)
                 .HasMaxLength(60)
                 .HasColumnName("email");
+            entity.Property(e => e.MotDePasse).HasMaxLength(255);
             entity.Property(e => e.Nom)
                 .HasMaxLength(50)
                 .HasColumnName("nom");
-            entity.Property(e => e.Poste)
-                .HasMaxLength(50)
-                .HasColumnName("poste");
             entity.Property(e => e.Prenom)
                 .HasMaxLength(60)
                 .HasColumnName("prenom");
