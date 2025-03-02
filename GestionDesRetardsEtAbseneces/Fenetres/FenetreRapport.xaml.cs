@@ -58,7 +58,8 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             }
             DateOnly dateGeneration = DateOnly.FromDateTime(DatePickerDateGeneration.SelectedDate.Value);
 
-            string contenuRapport = TextBoxContenuRapport.Text;
+            TextRange textRange = new TextRange(RichTextBoxContenuRapport.Document.ContentStart, RichTextBoxContenuRapport.Document.ContentEnd);
+            string contenuRapport = textRange.Text;
             if (contenuRapport is null)
             {
                 MessageBox.Show("Le contenu du rapport ne peux pas etre null");
@@ -98,7 +99,8 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 ComboBoxPeriode.SelectedItem = rapportassiduite.PeriodeRapport;
                 ComboBoxEmploye.SelectedValue = rapportassiduite.IdEmploye;
                 DatePickerDateGeneration.SelectedDate = rapportassiduite.DateGeneration;
-                TextBoxContenuRapport.Text = rapportassiduite.ContenuRapport;
+                //RichTextBoxContenuRapport.Document.Blocks.Clear();
+                RichTextBoxContenuRapport.Document.Blocks.Add(new Paragraph(new Run(rapportassiduite.ContenuRapport)));
             }
         }
 
@@ -108,7 +110,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             ComboBoxPeriode.SelectedIndex = -1;
             ComboBoxEmploye.SelectedIndex = -1;
             DatePickerDateGeneration.SelectedDate = null;
-            TextBoxContenuRapport.Text = "";
+            RichTextBoxContenuRapport.Document.Blocks.Clear();
             Window_Loaded(this, new RoutedEventArgs());
         }
         //Generation du rapport

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="RAPPORT" Height="450" Width="700" Background="SkyBlue">
+        Title="RAPPORT" Height="450" Width="700" >
     <Window.Resources>
         <CollectionViewSource x:Key="rapportViewSource"/>
         <CollectionViewSource x:Key="employeViewSource"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition ></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -49,7 +49,7 @@
 
         <DockPanel Grid.Column="1" Grid.Row="2" Margin="0,10,5,0" Height="150">
             <Label Content="Contenu"/>
-            <TextBox x:Name="TextBoxContenuRapport"/>
+            <RichTextBox x:Name="RichTextBoxContenuRapport"/>
         </DockPanel>
 
         <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0">
