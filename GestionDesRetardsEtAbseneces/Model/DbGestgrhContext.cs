@@ -31,7 +31,7 @@ public partial class DbGestgrhContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("Server=127.0.0.1;Database=db_gestgrh ;Uid=root;Pwd=root");
+        => optionsBuilder.UseMySQL("Server=127.0.0.1; Database=db_gestgrh; uid=root");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -43,22 +43,31 @@ public partial class DbGestgrhContext : DbContext
 
             entity.HasIndex(e => e.IdEmploye, "idEmploye");
 
-            entity.Property(e => e.IdAbsence).HasColumnName("idAbsence");
+            entity.Property(e => e.IdAbsence)
+                .HasColumnType("int(11)")
+                .HasColumnName("idAbsence");
             entity.Property(e => e.DateAbsence)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("date")
                 .HasColumnName("dateAbsence");
-            entity.Property(e => e.IdEmploye).HasColumnName("idEmploye");
+            entity.Property(e => e.IdEmploye)
+                .HasColumnType("int(11)")
+                .HasColumnName("idEmploye");
             entity.Property(e => e.Justification)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("text")
                 .HasColumnName("justification");
             entity.Property(e => e.TypeAbsence)
                 .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("typeAbsence");
-            entity.Property(e => e.Valide).HasColumnName("valide");
+            entity.Property(e => e.Valide)
+                .HasDefaultValueSql("'NULL'")
+                .HasColumnName("valide");
 
             entity.HasOne(d => d.IdEmployeNavigation).WithMany(p => p.Absences)
                 .HasForeignKey(d => d.IdEmploye)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("absence_ibfk_1");
         });
 
@@ -72,6 +81,7 @@ public partial class DbGestgrhContext : DbContext
 
             entity.Property(e => e.IdAuthentification)
                 .HasComment("Primary Key")
+                .HasColumnType("int(11)")
                 .HasColumnName("idAuthentification");
             entity.Property(e => e.DateDerniereConnexion)
                 .HasComment("Last Connection Date")
@@ -81,18 +91,21 @@ public partial class DbGestgrhContext : DbContext
                 .HasColumnType("datetime");
             entity.Property(e => e.IdEmploye)
                 .HasComment("Foreign Key")
+                .HasColumnType("int(11)")
                 .HasColumnName("idEmploye");
             entity.Property(e => e.MotDePasseHash)
                 .HasMaxLength(255)
                 .HasComment("Hashed Password");
-            entity.Property(e => e.NiveauAcces).HasComment("Access Level");
+            entity.Property(e => e.NiveauAcces)
+                .HasComment("Access Level")
+                .HasColumnType("int(11)");
             entity.Property(e => e.TokenSession)
                 .HasMaxLength(255)
                 .HasComment("Session Token");
 
             entity.HasOne(d => d.IdEmployeNavigation).WithMany(p => p.Authentifications)
                 .HasForeignKey(d => d.IdEmploye)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("authentification_ibfk_1");
         });
 
@@ -104,27 +117,36 @@ public partial class DbGestgrhContext : DbContext
 
             entity.HasIndex(e => e.IdEmploye, "idEmploye");
 
-            entity.Property(e => e.IdDemande).HasColumnName("idDemande");
+            entity.Property(e => e.IdDemande)
+                .HasColumnType("int(11)")
+                .HasColumnName("idDemande");
             entity.Property(e => e.DateDebut)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("date")
                 .HasColumnName("dateDebut");
             entity.Property(e => e.DateFin)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("date")
                 .HasColumnName("dateFin");
-            entity.Property(e => e.IdEmploye).HasColumnName("idEmploye");
+            entity.Property(e => e.IdEmploye)
+                .HasColumnType("int(11)")
+                .HasColumnName("idEmploye");
             entity.Property(e => e.Justification)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("text")
                 .HasColumnName("justification");
             entity.Property(e => e.Statut)
                 .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("statut");
             entity.Property(e => e.TypeConge)
                 .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("typeConge");
 
             entity.HasOne(d => d.IdEmployeNavigation).WithMany(p => p.Demandeconges)
                 .HasForeignKey(d => d.IdEmploye)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("demandeconge_ibfk_1");
         });
 
@@ -136,22 +158,31 @@ public partial class DbGestgrhContext : DbContext
 
             entity.HasIndex(e => e.Email, "email").IsUnique();
 
-            entity.Property(e => e.IdEmploye).HasColumnName("idEmploye");
+            entity.Property(e => e.IdEmploye)
+                .HasColumnType("int(11)")
+                .HasColumnName("idEmploye");
             entity.Property(e => e.Email)
                 .HasMaxLength(60)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("email");
-            entity.Property(e => e.MotDePasse).HasMaxLength(255);
+            entity.Property(e => e.MotDePasse)
+                .HasMaxLength(255)
+                .HasDefaultValueSql("'NULL'");
             entity.Property(e => e.Nom)
                 .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("nom");
             entity.Property(e => e.Prenom)
                 .HasMaxLength(60)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("prenom");
             entity.Property(e => e.RoleEmploye)
                 .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("roleEmploye");
             entity.Property(e => e.Statut)
                 .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("statut");
         });
 
@@ -163,22 +194,31 @@ public partial class DbGestgrhContext : DbContext
 
             entity.HasIndex(e => e.IdEmploye, "idEmploye");
 
-            entity.Property(e => e.IdNotification).HasColumnName("idNotification");
+            entity.Property(e => e.IdNotification)
+                .HasColumnType("int(11)")
+                .HasColumnName("idNotification");
             entity.Property(e => e.DateEnvoi)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("datetime")
                 .HasColumnName("dateEnvoi");
-            entity.Property(e => e.IdEmploye).HasColumnName("idEmploye");
+            entity.Property(e => e.IdEmploye)
+                .HasColumnType("int(11)")
+                .HasColumnName("idEmploye");
             entity.Property(e => e.MessageNotification)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("text")
                 .HasColumnName("messageNotification");
-            entity.Property(e => e.Statut).HasColumnName("statut");
+            entity.Property(e => e.Statut)
+                .HasDefaultValueSql("'NULL'")
+                .HasColumnName("statut");
             entity.Property(e => e.TypeNotification)
                 .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("typeNotification");
 
             entity.HasOne(d => d.IdEmployeNavigation).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.IdEmploye)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("notification_ibfk_1");
         });
 
@@ -190,21 +230,28 @@ public partial class DbGestgrhContext : DbContext
 
             entity.HasIndex(e => e.IdEmploye, "idEmploye");
 
-            entity.Property(e => e.IdRapport).HasColumnName("idRapport");
+            entity.Property(e => e.IdRapport)
+                .HasColumnType("int(11)")
+                .HasColumnName("idRapport");
             entity.Property(e => e.ContenuRapport)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("text")
                 .HasColumnName("contenuRapport");
             entity.Property(e => e.DateGeneration)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("date")
                 .HasColumnName("dateGeneration");
-            entity.Property(e => e.IdEmploye).HasColumnName("idEmploye");
+            entity.Property(e => e.IdEmploye)
+                .HasColumnType("int(11)")
+                .HasColumnName("idEmploye");
             entity.Property(e => e.PeriodeRapport)
                 .HasMaxLength(50)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnName("periodeRapport");
 
             entity.HasOne(d => d.IdEmployeNavigation).WithMany(p => p.Rapportassiduites)
                 .HasForeignKey(d => d.IdEmploye)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("rapportassiduite_ibfk_1");
         });
 
@@ -216,25 +263,35 @@ public partial class DbGestgrhContext : DbContext
 
             entity.HasIndex(e => e.IdEmploye, "idEmploye");
 
-            entity.Property(e => e.IdRetard).HasColumnName("idRetard");
+            entity.Property(e => e.IdRetard)
+                .HasColumnType("int(11)")
+                .HasColumnName("idRetard");
             entity.Property(e => e.DateRetard)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("date")
                 .HasColumnName("dateRetard");
             entity.Property(e => e.HeureDebut)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("time")
                 .HasColumnName("heureDebut");
             entity.Property(e => e.HeureFin)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("time")
                 .HasColumnName("heureFin");
-            entity.Property(e => e.IdEmploye).HasColumnName("idEmploye");
+            entity.Property(e => e.IdEmploye)
+                .HasColumnType("int(11)")
+                .HasColumnName("idEmploye");
             entity.Property(e => e.Justification)
+                .HasDefaultValueSql("'NULL'")
                 .HasColumnType("text")
                 .HasColumnName("justification");
-            entity.Property(e => e.Valide).HasColumnName("valide");
+            entity.Property(e => e.Valide)
+                .HasDefaultValueSql("'NULL'")
+                .HasColumnName("valide");
 
             entity.HasOne(d => d.IdEmployeNavigation).WithMany(p => p.Retards)
                 .HasForeignKey(d => d.IdEmploye)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("retard_ibfk_1");
         });
 
