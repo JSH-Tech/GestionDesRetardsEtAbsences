@@ -7,20 +7,42 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Label Content="Gestion des retards et absences" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="30"/>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
-            <Button Content="Employes" Name="Btn_Employes" Margin="5"  />
-            <Button Content="Rapports" Name="Btn_Rapports" Margin="5" Click="Btn_Rapports_Click"  />
-            <Button Content="Notifications" Name="Btn_Notifications" Margin="5"/>
+        <Image Source="/Images/logo.jpeg" Stretch="UniformToFill" Opacity="0.7" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,50,0,0">
+            <TextBlock Text="Time Management" FontSize="36" FontWeight="Bold" Foreground="Black" Margin="0,0,0,10"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="/Images/user.png" Width="30" Height="30" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <Border Grid.Column="1" BorderBrush="#3B3B3B" BorderThickness="0 0 0 1" Padding="5 0">
+                    <TextBox Width="250" x:Name="NomUser" Background="Transparent" Foreground="Black" BorderThickness="0" VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="/Images/password.png" Width="30" Height="30" VerticalAlignment="Center" Margin="0,6,10,0"/>
+                <Border Grid.Column="1" BorderBrush="#3B3B3B" BorderThickness="0 0 0 1" Padding="5 0">
+                    <PasswordBox Width="250" x:Name="MotDePasse" Background="Transparent" Foreground="Black" BorderThickness="0" VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <!-- Ajout du message d'erreur -->
+            <TextBlock x:Name="Txt_ErrorMessage" Foreground="Red" Margin="0,10,0,0" Visibility="Collapsed"/>
+
+            <Button x:Name="LoginButton" Content="LOG IN" Height="40" Margin="0,20,0,0" Background="#447AA0"
+                    Foreground="White" FontWeight="Bold" Click="LoginButton_Click"/>
+
+            <TextBlock Text="Forgot Password?" Foreground="#447AA0" HorizontalAlignment="Right"
+                       Cursor="Hand" Margin="0,10,0,0" MouseDown="ForgotPassword_Click"/>
         </StackPanel>
+
     </Grid>
 </Window>

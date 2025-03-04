@@ -22,15 +22,38 @@ namespace GestionDesRetardsEtAbseneces
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Ouvre la fenetre de gestion des rapports
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Btn_Rapports_Click(object sender, RoutedEventArgs e)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            FenetreRapport fenetreRapport = new FenetreRapport();
-            fenetreRapport.Show();
+            string username = NomUser.Text;
+            string password = MotDePasse.Password;
+
+            if (string.IsNullOrEmpty(NomUser.Text) || string.IsNullOrEmpty(MotDePasse.Password))
+            {
+                Txt_ErrorMessage.Text = "Veuillez remplir tous les champs";
+                Txt_ErrorMessage.Visibility = Visibility.Visible;
+            }
+
+            else if (username == "admin" && password == "123") // Simule une authentification
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close(); // Ferme la fenêtre de connexion
+            }
+            else
+            {
+                Txt_ErrorMessage.Text = "Identifiant ou mot de passe incorrect.";
+                Txt_ErrorMessage.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ForgotPassword_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Pour réinitialiser votre mot de passe, contactez l'assistance.", "Mot de passe oublié", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void Btn_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(); // Quitte l'application
         }
     }
 }
