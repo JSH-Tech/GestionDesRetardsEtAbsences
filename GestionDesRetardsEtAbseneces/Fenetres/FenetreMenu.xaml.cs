@@ -33,5 +33,17 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             FenetreRapport fenetreRapport = new FenetreRapport();
             fenetreRapport.Show();
         }
+
+
+        private void Btn_Employes_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+
+            FenetreEmploye fenetreEmploye = new FenetreEmploye();
+            fenetreEmploye.ShowDialog();
+
+            this.Show();
+
+        }
     }
 }
