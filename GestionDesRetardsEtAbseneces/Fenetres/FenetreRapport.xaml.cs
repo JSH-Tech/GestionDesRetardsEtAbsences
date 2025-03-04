@@ -49,6 +49,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 MessageBox.Show("Veuillez selectionner un employe");
                 return null;
             }
+
             int idEmploye = int.Parse(idEmployeSelectionne);
 
             if (!DatePickerDateGeneration.SelectedDate.HasValue)
@@ -58,7 +59,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             }
             DateOnly dateGeneration = DateOnly.FromDateTime(DatePickerDateGeneration.SelectedDate.Value);
 
-            TextRange textRange = new TextRange(RichTextBoxContenuRapport.Document.ContentStart, RichTextBoxContenuRapport.Document.ContentEnd);
+            TextRange textRange = new(RichTextBoxContenuRapport.Document.ContentStart, RichTextBoxContenuRapport.Document.ContentEnd);
             string contenuRapport = textRange.Text;
             if (contenuRapport is null)
             {
@@ -97,7 +98,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 Btn_Supprimer.IsEnabled = DatagridRapport.SelectedItem != null;
                 Btn_Imprimer.IsEnabled = DatagridRapport.SelectedItem != null;
                 ComboBoxPeriode.SelectedItem = rapportassiduite.PeriodeRapport;
-                ComboBoxEmploye.SelectedValue = rapportassiduite.IdEmploye;
+                ComboBoxEmploye.SelectedValue = rapportassiduite.IdEmployeNavigation.Nom;
                 DatePickerDateGeneration.SelectedDate = rapportassiduite.DateGeneration;
                 //RichTextBoxContenuRapport.Document.Blocks.Clear();
                 RichTextBoxContenuRapport.Document.Blocks.Add(new Paragraph(new Run(rapportassiduite.ContenuRapport)));
@@ -209,6 +210,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     {
                         MessageBox.Show("Erreur lors de la modification du rapport: " + ex.Message);
                         ViderChamps();
+                        return;
                     }
                 }
             }
