@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #Ignore all file in Model folder
-Model/*
+GestionDesRetardsEtAbseneces/Model/*
