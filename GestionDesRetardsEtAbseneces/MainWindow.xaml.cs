@@ -21,7 +21,11 @@ namespace GestionDesRetardsEtAbseneces
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Fonctionnalité de connexion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = NomUser.Text;
@@ -35,8 +39,8 @@ namespace GestionDesRetardsEtAbseneces
 
             else if (username == "admin" && password == "123") // Simule une authentification
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+                FenetreMenu fenetreMenu = new FenetreMenu();
+                fenetreMenu.Show();
                 this.Close(); // Ferme la fenêtre de connexion
             }
             else
