@@ -1,14 +1,7 @@
-﻿using GestionDesRetardsEtAbseneces.Fenetres;
-using System.Text;
+﻿using GestionDesRetardsEtAbseneces.Controllers;
+using GestionDesRetardsEtAbseneces.Fenetres;
+using GestionDesRetardsEtAbseneces.Model;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GestionDesRetardsEtAbseneces
 {
@@ -17,6 +10,7 @@ namespace GestionDesRetardsEtAbseneces
     /// </summary>
     public partial class MainWindow : Window
     {
+        DbGestgrhContext dbGestGrhContext = new DbGestgrhContext();
         public MainWindow()
         {
             InitializeComponent();
@@ -30,23 +24,20 @@ namespace GestionDesRetardsEtAbseneces
         {
             string username = NomUser.Text;
             string password = MotDePasse.Password;
+            Employe? employeConnecter=AuthentifierUtilisateur(username, password);
+            if (employeConnecter is not null)
+            {
+                try
+                {
+                    FenetreMenu fenetreMenu = new FenetreMenu();
+                    fenetreMenu.Show();
+                    this.Close(); // Ferme la fenêtre de connexion
+                }
+                catch (Exception ex)
+                {
 
-            if (string.IsNullOrEmpty(NomUser.Text) || string.IsNullOrEmpty(MotDePasse.Password))
-            {
-                Txt_ErrorMessage.Text = "Veuillez remplir tous les champs";
-                Txt_ErrorMessage.Visibility = Visibility.Visible;
-            }
-
-            else if (username == "admin" && password == "123") // Simule une authentification
-            {
-                FenetreMenu fenetreMenu = new FenetreMenu();
-                fenetreMenu.Show();
-                this.Close(); // Ferme la fenêtre de connexion
-            }
-            else
-            {
-                Txt_ErrorMessage.Text = "Identifiant ou mot de passe incorrect.";
-                Txt_ErrorMessage.Visibility = Visibility.Visible;
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -59,5 +50,25 @@ namespace GestionDesRetardsEtAbseneces
         {
             Application.Current.Shutdown(); // Quitte l'application
         }
+
+        private Employe? AuthentifierUtilisateur(string username, string password)
+        {
+            if (!string.IsNullOrEmpty(username) || !string.IsNullOrEmpty(password))
+            {
+                string passwordHasher = Hacheur.HacherMotDePasse(password);
+                Employe? employe = dbGestGrhContext.Employes.FirstOrDefault(e => e.Email == username && e.MotDePasse == passwordHasher);
+
+                if (employe is not null)
+                {
+                    return employe;
+                }
+            Txt_ErrorMessage.Text = "Identifiant ou mot de passe incorrect.";
+            Txt_ErrorMessage.Visibility = Visibility.Visible;
+            }
+            Txt_ErrorMessage.Text = "Veuillez remplir tous les champs";
+            Txt_ErrorMessage.Visibility = Visibility.Visible;
+            return null;
+        }
+
     }
 }
