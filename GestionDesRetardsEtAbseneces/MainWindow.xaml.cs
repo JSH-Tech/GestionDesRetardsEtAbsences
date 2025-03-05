@@ -62,8 +62,9 @@ namespace GestionDesRetardsEtAbseneces
                 {
                     return employe;
                 }
-            Txt_ErrorMessage.Text = "Identifiant ou mot de passe incorrect.";
-            Txt_ErrorMessage.Visibility = Visibility.Visible;
+                Txt_ErrorMessage.Text = "Identifiant ou mot de passe incorrect.";
+                Txt_ErrorMessage.Visibility = Visibility.Visible;
+                return null;
             }
             Txt_ErrorMessage.Text = "Veuillez remplir tous les champs";
             Txt_ErrorMessage.Visibility = Visibility.Visible;

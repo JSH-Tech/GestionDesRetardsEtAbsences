@@ -1,18 +1,8 @@
-﻿using GestionDesRetardsEtAbseneces.Model;
-using System;
-using System.Collections.Generic;
+﻿using GestionDesRetardsEtAbseneces.Controllers;
+using GestionDesRetardsEtAbseneces.Model;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GestionDesRetardsEtAbseneces.Fenetres
 {
@@ -36,12 +26,13 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
+            string passwordHasher = Hacheur.HacherMotDePasse(MotDePasse.Password);
             var employe = new Employe
             {
                 Nom = txtNom.Text,
                 Prenom = txtPrenom.Text,
                 Email = txtEmail.Text,
-                MotDePasse = MotDePasse.Password,
+                MotDePasse = passwordHasher,
                 RoleEmploye = (RoleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString(),
                 Statut = (StatutComboBox.SelectedItem as ComboBoxItem)?.Content.ToString()
             };
