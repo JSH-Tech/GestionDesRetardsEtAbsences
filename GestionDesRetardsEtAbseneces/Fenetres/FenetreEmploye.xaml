@@ -53,6 +53,7 @@
                         <ComboBoxItem Content="RH"/>
                         <ComboBoxItem Content="Employé"/>
                         <ComboBoxItem Content="Manager"/>
+                        <ComboBoxItem Content="Administrateur"/>
                     </ComboBox>
 
                     <TextBlock Text="Statut :" FontWeight="Bold" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"/>
