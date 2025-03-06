@@ -11,6 +11,7 @@ namespace GestionDesRetardsEtAbseneces
     public partial class MainWindow : Window
     {
         DbGestgrhContext dbGestGrhContext = new DbGestgrhContext();
+        SessionEtAuthentification sessionEtAuthentification = new SessionEtAuthentification();
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +30,8 @@ namespace GestionDesRetardsEtAbseneces
             {
                 try
                 {
-                    FenetreMenu fenetreMenu = new FenetreMenu();
+                    FenetreMenu fenetreMenu = new();
+                    sessionEtAuthentification.MettreAJourAuthentification(employeConnecter.IdEmploye);
                     fenetreMenu.Show();
                     this.Close(); // Ferme la fenêtre de connexion
                 }
