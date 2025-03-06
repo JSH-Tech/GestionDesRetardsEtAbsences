@@ -188,6 +188,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 }
                 else
                 {
+
                     //Recuperer le rapport a modifier
                     Rapportassiduite? rapportAModifier = gestgrhContext.Rapportassiduites.Find(rapportassiduite.IdRapport);
                     if (rapportAModifier is null)
@@ -239,19 +240,28 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     MessageBox.Show("Rapport introuvable");
                     return;
                 }
-                //Supprimer le rapport de la base de donnees
-                try
+                MessageBoxResult messageBoxResult = MessageBox.Show("Voulez-vous vraiment supprimer ce rapport ?", "Confirmation de suppression", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.No)
                 {
-                    gestgrhContext.Rapportassiduites.Remove(rapportASupprimer);
-                    gestgrhContext.SaveChanges();
-                    MessageBox.Show("Rapport supprimé avec succes");
-                    ViderChamps();
+                    return;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur lors de la suppression du rapport: " + ex.Message);
-                    ViderChamps();
+                else
+                { 
+                    //Supprimer le rapport de la base de donnees
+                    try
+                    {
+                        gestgrhContext.Rapportassiduites.Remove(rapportASupprimer);
+                        gestgrhContext.SaveChanges();
+                        MessageBox.Show("Rapport supprimé avec succes");
+                        ViderChamps();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de la suppression du rapport: " + ex.Message);
+                        ViderChamps();
+                    } 
                 }
+
             }
         }
 
