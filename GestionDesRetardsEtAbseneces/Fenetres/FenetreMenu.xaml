@@ -6,42 +6,45 @@
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
         Title="FenetreMenu" Height="450" Width="800" Background="AliceBlue">
+    
     <Grid Margin="20">
-            <!-- Définition des lignes -->
-            <Grid.RowDefinitions>
+        <!-- Définition des lignes -->
+        <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-               
-            </Grid.RowDefinitions>
 
-            <!-- Titre centré -->
-            <Label x:Name="LabelBienvenu" Content="Bienvenue !" 
+        </Grid.RowDefinitions>
+
+        <!-- Titre centré -->
+        <Label x:Name="LabelBienvenu" Content="Bienvenue !" 
                Grid.Row="0" FontSize="24" FontWeight="Bold" Foreground="Black"
                HorizontalAlignment="Center" Margin="10"/>
 
-            <!-- Section des boutons -->
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <!-- Section des boutons -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <!-- Colonne 1 -->
-                <Button Content="👤 Gestion des Employés" Name="Btn_Employes" Grid.Row="0" Grid.Column="0" Style="{StaticResource StyledButton}" Click="Btn_Employes_Click"/>
+            <!-- Colonne 1 -->
+            <Button Content="👤 Gestion des Employés" Name="Btn_Employes" Grid.Row="0" Grid.Column="0" Style="{StaticResource StyledButton}" Click="Btn_Employes_Click"/>
             <Button Content="⏳ Suivi des Retards" Name="Btn_Retard" Grid.Row="1" Grid.Column="0" Style="{StaticResource StyledButton}" />
-            <Button Content="📊 Tableau de Bord" Name="Btn_Dashboard" Grid.Row="2" Grid.Column="0" Style="{StaticResource StyledButton}" />
 
             <!-- Colonne 2 -->
-                <Button Content="📑 Rapports " Name="Btn_Rapports" Grid.Row="0" Grid.Column="1" Style="{StaticResource StyledButton}" Click="Btn_Rapports_Click" />
-                <Button Content="📅 Demande de Congés" Name="Btn_DemandeConges" Grid.Row="1" Grid.Column="1" Style="{StaticResource StyledButton}" />
+            <Button Content="📑 Rapports " Name="Btn_Rapports" Grid.Row="0" Grid.Column="1" Style="{StaticResource StyledButton}" Click="Btn_Rapports_Click" />
+            <Button Content="📅 Demande de Congés" Name="Btn_DemandeConges" Grid.Row="1" Grid.Column="1" Style="{StaticResource StyledButton}" />
             <Button Content="✅ Validation des Congés" Name="Btn_ValidationConges" Grid.Row="2" Grid.Column="1" Style="{StaticResource StyledButton}" />
-            <Button Content="🔔 Centre de Notifications" Name="Btn_Notifications" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_Notifications_Click"/>
-            </Grid>
+            <Button Content="🔔 Centre de Notifications" Name="Btn_Notifications" Grid.Row="2" Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_Notifications_Click"/>
+            <Button Content="🔔 Mes Notifications" Name="Btn_NotificationsEmploye" Grid.Row="2" Grid.Column="1"  Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_NotificationsEmploye_Click"/>
+            <Button Content="📊 Tableau de Bord" Name="Btn_Dashboard" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StyledButton}" />
+
         </Grid>
+    </Grid>
 </Window>
