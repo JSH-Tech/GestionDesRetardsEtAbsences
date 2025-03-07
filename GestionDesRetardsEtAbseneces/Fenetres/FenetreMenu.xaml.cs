@@ -12,12 +12,27 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         {
             InitializeComponent();
             LabelBienvenu.Content = "Bienvenue " + SessionUtilisateur.Nom + " " + SessionUtilisateur.Prenom;
+            VerifierAcces();
         }
         /// <summary>
         /// Ouvre la fenetre de gestion des rapports
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        
+        //Verifier les acces aux boutton
+        public void VerifierAcces()
+        {
+            if (SessionUtilisateur.Role == "Employé")
+            {
+                Btn_Employes.IsEnabled = false;
+                Btn_Rapports.IsEnabled = false;
+                Btn_Dashboard.IsEnabled = false;
+                Btn_Notifications.IsEnabled = false;
+                Btn_Retard.IsEnabled = false;
+                Btn_ValidationConges.IsEnabled = false;
+            }
+        }
         private void Btn_Rapports_Click(object sender, RoutedEventArgs e)
         {
             FenetreRapport fenetreRapport = new FenetreRapport();

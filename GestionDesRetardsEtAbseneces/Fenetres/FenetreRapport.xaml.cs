@@ -77,6 +77,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             Btn_Modifier.IsEnabled = false;
             Btn_Supprimer.IsEnabled = false;
             Btn_Imprimer.IsEnabled = false;
+            ViderChamps();
         }
 
 
@@ -112,7 +113,6 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             ComboBoxEmploye.SelectedIndex = -1;
             DatePickerDateGeneration.SelectedDate = null;
             RichTextBoxContenuRapport.Document.Blocks.Clear();
-            Window_Loaded(this, new RoutedEventArgs());
         }
         //Generation du rapport
         private void Btn_Generer_Click(object sender, RoutedEventArgs e)

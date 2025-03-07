@@ -37,5 +37,7 @@ namespace GestionDesRetardsEtAbseneces.Controllers
             SessionUtilisateur.Prenom = dbGestgrhContext.Employes.Find(idEmploye)?.Prenom;
 
         }
+
+        
     }
 }

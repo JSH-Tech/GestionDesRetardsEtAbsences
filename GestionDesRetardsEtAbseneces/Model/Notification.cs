@@ -18,4 +18,6 @@ public partial class Notification
     public bool? Statut { get; set; }
 
     public virtual Employe IdEmployeNavigation { get; set; } = null!;
+
+    public string StatutText=> Statut == true ? "Lu" : "Non lu";
 }

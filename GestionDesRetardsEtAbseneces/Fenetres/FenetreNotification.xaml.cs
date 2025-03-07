@@ -1,17 +1,9 @@
 ﻿using GestionDesRetardsEtAbseneces.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GestionDesRetardsEtAbseneces.Fenetres
 {
@@ -21,9 +13,20 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
     public partial class FenetreNotification : Window
     {
         DbGestgrhContext gestgrhContext = new();
+        CollectionViewSource notificationViewSource;
+        CollectionViewSource employeViewSource;
         public FenetreNotification()
         {
             InitializeComponent();
+            notificationViewSource = (CollectionViewSource)FindResource(nameof(notificationViewSource));
+            employeViewSource = (CollectionViewSource)FindResource(nameof(employeViewSource));
+            gestgrhContext.Database.EnsureCreated();
+
+            gestgrhContext.Notifications.Include(e=> e.IdEmployeNavigation).Load();
+            gestgrhContext.Employes.Load();
+
+            notificationViewSource.Source = gestgrhContext.Notifications.Local.ToObservableCollection();
+            employeViewSource.Source = gestgrhContext.Employes.Local.ToObservableCollection();
         }
 
         /// <summary>
@@ -72,7 +75,6 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             ComboBox_Employe.SelectedIndex = -1;
             DatePicker_DateEnvoie.SelectedDate = null;
             RichtxtBox_Message.Document.Blocks.Clear();
-            Window_Loaded(this, new RoutedEventArgs());
         }
 
         /// <summary>
@@ -85,6 +87,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             Btn_Modifier.IsEnabled = false;
             Btn_Supprimer.IsEnabled = false;
             DataGrid_Notification.SelectedItem = null;
+            ViderChamps();
         }
 
         private void DataGrid_Notification_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -130,6 +133,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 TypeNotification = typeNotification,
                 DateEnvoi = dateEnvoie.ToDateTime(TimeOnly.MinValue),
                 MessageNotification = contenuNotification,
+                Statut = false,
                 IdEmploye = idEmploye
             };
 
