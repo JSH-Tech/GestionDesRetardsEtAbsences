@@ -30,8 +30,8 @@ namespace GestionDesRetardsEtAbseneces
             {
                 try
                 {
-                    FenetreMenu fenetreMenu = new();
                     sessionEtAuthentification.MettreAJourAuthentification(employeConnecter.IdEmploye);
+                    FenetreMenu fenetreMenu = new();
                     fenetreMenu.Show();
                     this.Close(); // Ferme la fenêtre de connexion
                 }
