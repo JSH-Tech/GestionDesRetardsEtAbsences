@@ -25,7 +25,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         }
 
 
-        private void Btn_Employes_Click_1(object sender, RoutedEventArgs e)
+        private void Btn_Employes_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
 
@@ -34,6 +34,13 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
             this.Show();
 
+        }
+
+        private void Btn_Notifications_Click(object sender, RoutedEventArgs e)
+        {
+            FenetreNotification fenetreNotification = new FenetreNotification();
+            fenetreNotification.ShowDialog();
+            this.Show();
         }
     }
 }
