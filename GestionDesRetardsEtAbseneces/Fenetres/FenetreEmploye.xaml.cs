@@ -22,6 +22,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             EmployeDataGrid.ItemsSource = _employes;
 
             InitializeComponent();
+            if (Utilitaires.timerInactivite.IsEnabled)
+            {
+                Utilitaires.timerInactivite.Stop();
+            }
+            Utilitaires.InitialiserTimer(this);
         }
 
         private void btnAjouter_Click(object sender, RoutedEventArgs e)

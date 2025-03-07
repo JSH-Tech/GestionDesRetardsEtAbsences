@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionDesRetardsEtAbseneces.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         public FenetreConges()
         {
             InitializeComponent();
+            if (Utilitaires.timerInactivite.IsEnabled)
+            {
+                Utilitaires.timerInactivite.Stop();
+            }
+            Utilitaires.InitialiserTimer(this);
         }
     }
 }

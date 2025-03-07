@@ -1,4 +1,5 @@
-﻿using GestionDesRetardsEtAbseneces.Model;
+﻿using GestionDesRetardsEtAbseneces.Controllers;
+using GestionDesRetardsEtAbseneces.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +28,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
             notificationViewSource.Source = gestgrhContext.Notifications.Local.ToObservableCollection();
             employeViewSource.Source = gestgrhContext.Employes.Local.ToObservableCollection();
+            if (Utilitaires.timerInactivite.IsEnabled)
+            {
+                Utilitaires.timerInactivite.Stop();
+            }
+            Utilitaires.InitialiserTimer(this);
         }
 
         /// <summary>

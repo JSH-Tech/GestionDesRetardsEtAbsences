@@ -15,6 +15,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             InitializeComponent();
             LabelBienvenu.Content = "Bienvenue " + SessionUtilisateur.Nom + " " + SessionUtilisateur.Prenom;
             VerifierAcces();
+            if (Utilitaires.timerInactivite.IsEnabled)
+            {
+                Utilitaires.timerInactivite.Stop();
+            }
+            Utilitaires.InitialiserTimer(this);
         }
         /// <summary>
         /// Ouvre la fenetre de gestion des rapports
@@ -66,5 +71,9 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             utilitaires.AfficherNotifications(SessionUtilisateur.IdEmploye);
         }
 
+        private void Btn_Deconnexion_Click(object sender, RoutedEventArgs e)
+        {
+            Utilitaires.Deconnexion(this);
+        }
     }
 }

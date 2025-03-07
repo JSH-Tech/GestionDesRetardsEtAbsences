@@ -1,3 +1,4 @@
+using GestionDesRetardsEtAbseneces.Controllers;
 using GestionDesRetardsEtAbseneces.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
@@ -29,6 +30,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             //Affectation des donnés aux sources de donnees correspondant
             rapportViewSource.Source = gestgrhContext.Rapportassiduites.Local.ToObservableCollection();
             employeViewSource.Source = gestgrhContext.Employes.Local.ToObservableCollection();
+            if (Utilitaires.timerInactivite.IsEnabled)
+            {
+                Utilitaires.timerInactivite.Stop();
+            }
+            Utilitaires.InitialiserTimer(this);
         }
 
 

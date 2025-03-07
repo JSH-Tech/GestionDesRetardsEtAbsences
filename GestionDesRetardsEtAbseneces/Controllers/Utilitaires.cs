@@ -1,11 +1,13 @@
 ﻿using GestionDesRetardsEtAbseneces.Model;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace GestionDesRetardsEtAbseneces.Controllers
 {
     
     class Utilitaires
     {
+        //public System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
         DbGestgrhContext dbgestgrhContext = new DbGestgrhContext();
         public void AfficherNotifications(int idEmploye)
         {
@@ -27,6 +29,39 @@ namespace GestionDesRetardsEtAbseneces.Controllers
             {
                 MessageBox.Show("Vous n'avez pas de nouvelle notification", "Notifications", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        public static void Deconnexion(Window fenetreActuelle)
+        {
+            // Arrêter le timer pour éviter qu'il tourne en arrière-plan
+            if (timerInactivite.IsEnabled)
+            {
+                timerInactivite.Stop();
+            }
+
+            // Réinitialiser les données utilisateur
+            SessionUtilisateur.IdEmploye = 0;
+            SessionUtilisateur.Nom = null;
+            SessionUtilisateur.Prenom = null;
+            SessionUtilisateur.Email = null;
+            SessionUtilisateur.Role = null;
+            SessionUtilisateur.HeureConnexion = DateTime.MinValue;
+
+            // Ouvrir la fenêtre de connexion
+            new MainWindow().Show();
+            fenetreActuelle.Close();
+        }
+
+
+        public static DispatcherTimer timerInactivite = new ();
+        public static void InitialiserTimer(Window fenetreAtuelle)
+        {
+            timerInactivite = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMinutes(5) // Temps limite
+            };
+            timerInactivite.Tick += (s, e) => Deconnexion(fenetreAtuelle);
+            timerInactivite.Start();
         }
     }
 }

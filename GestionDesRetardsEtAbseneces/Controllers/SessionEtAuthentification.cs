@@ -17,7 +17,7 @@ namespace GestionDesRetardsEtAbseneces.Controllers
         {
             string tokenSession = GenererTokenSession();
             DateTime dateConnexion = DateTime.Now;
-            DateTime dateExpiration = dateConnexion.AddMinutes(30);
+            DateTime dateExpiration = dateConnexion.AddMinutes(5);
 
             //Enregistrement de la session
             Authentification nouvelAuthentification = new();
