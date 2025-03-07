@@ -1,4 +1,4 @@
-﻿using GestionDesRetardsEtAbseneces.Controllers;
+using GestionDesRetardsEtAbseneces.Controllers;
 using GestionDesRetardsEtAbseneces.Fenetres;
 using GestionDesRetardsEtAbseneces.Model;
 using System.Windows;

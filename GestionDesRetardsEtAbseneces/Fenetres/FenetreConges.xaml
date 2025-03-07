@@ -5,28 +5,135 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
-        Title="FenetreConges" Height="450" Width="800">
+        Background="SkyBlue"
+    Title="DemandeConges" Height="721" Width="1053">
+
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Center">
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center"  Margin="0,50,0,0">
-                <Label Content="Formulaire de déclaration de congé" Foreground="Blue" Margin="0,0,0,0" FontSize="18" Height="50" Width="330" HorizontalAlignment="Center"/>
-                <Label Content="Nom Complet" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <TextBox Text="" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <Label Content="Type de congé" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <ComboBox Name="myComboBox" HorizontalAlignment="Center" FontSize="15" Height="30" Width="250" Margin="-60,0,0,0">
-                    <ComboBoxItem Content="Vacance (payé)"/>
-                    <ComboBoxItem Content="Maladie (non payé)"/>
-                    <ComboBoxItem Content="Maladie (payé)"/>
-                    <ComboBoxItem Content="Congé personnel (non payé)"/>
-                </ComboBox>
-                <Label Content="Date de début" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <DatePicker HorizontalAlignment="Center" FontSize="15" Height="30" Width="250" Margin="-60,0,0,0"/>
-                <Label Content="Date de fin" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <DatePicker HorizontalAlignment="Center" FontSize="15" Height="30" Width="250" Margin="-60,0,0,0"/>
-                <Label Content="Justificatif" FontSize="15" Height="30" Width="250" HorizontalAlignment="Center" Margin="-60,0,0,0"/>
-                <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="15" Height="60" Width="250" Margin="-60,0,0,10"/>
-                <Button Content="Soumettre" HorizontalAlignment="Center" Background="Black" Foreground="White" FontSize="17" Height="30" Width="250" Margin="-60,0,0,0"/>
-            </StackPanel>
-        </Border>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.ColumnSpan="2" Grid.Row="0"  Content="Formulaire de demande de congé" FontWeight="Bold" Margin="0,0,0,0" FontSize="28"  HorizontalAlignment="Center" />
+        <StackPanel Orientation="Horizontal"  Grid.Row="1"  Margin="0,30,0,0">
+            <Label   Content="Nom Complet" FontSize="20"  Margin="0,0,10,0" HorizontalAlignment="Center" />
+            <TextBox  Name="NomCompletTextBox"  Text="" FontSize="15" Width="250"   HorizontalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="1"  Margin="0,20,0,0">
+            <Label Content="Type de congé" FontSize="20"  HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox Name="myComboBox" HorizontalAlignment="Center" FontSize="15"  Width="250" >
+                <ComboBoxItem Content="Vacance (payé)"/>
+                <ComboBoxItem Content="Maladie (non payé)"/>
+                <ComboBoxItem Content="Maladie (payé)"/>
+                <ComboBoxItem Content="Congé personnel (non payé)"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0"   Margin="0,20,0,0">
+            <Label Content="Date de début" FontSize="20"  HorizontalAlignment="Center" Margin="0,0,10,0"/>
+            <DatePicker Name="DateDebutDatePicker" HorizontalAlignment="Center" FontSize="20"  Width="250" Margin="0,0,0,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Margin="0,20,0,0">
+            <Label Content="Date de fin" FontSize="20" HorizontalAlignment="Center" Margin="0,0,40,0"/>
+            <DatePicker Name="DateFinDatePicker" HorizontalAlignment="Center" FontSize="20" Width="250"  Margin="0,0,0,0"/>
+
+        </StackPanel>
+        <WrapPanel  Grid.Row="4"  Margin="0,20,0,0">
+            <Label Content="Justificatif" FontSize="20"  Width="150" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+            <TextBox  Name="JustificatifTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="15" Height="90" Width="250" Margin="0,0,0,10"/>
+        </WrapPanel>
+        <StackPanel  Orientation="Horizontal"  HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="-150,20,0,0">
+            <Button Content="Soumettre" FontSize="20" Name="Btn_Soumettre" Height="35" Margin="0,0,20,0" Width="100" Click="Btn_Soumettre_Click"/>
+            <Button Content="Annuler"  FontSize="20"  Name="Btn_Annuler" Height="35"  Margin="0,0,40,0" Width="100" Click="Btn_Annuler_Click"/>
+        </StackPanel>
+        <Label Grid.ColumnSpan="2" Grid.Row="5" Grid.Column="0" Content="Liste des demandes de congés" Margin="0,20,0,30"  HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" />
+
+        <DataGrid Height="300" Grid.ColumnSpan="2" Grid.Row="6" AutoGenerateColumns="False" Name="DemandeCongeDataGrid" ItemsSource="{Binding Demandes}">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="150" Header="Nom et Prénom" Binding="{Binding NomComplet}" />
+                <DataGridTextColumn Width="150" Header="Type de congé" Binding="{Binding TypeConge}" />
+                <DataGridTextColumn Width="150" Header="Date début" Binding="{Binding DateDebut}" />
+                <DataGridTextColumn Width="150" Header="Date fin" Binding="{Binding DateFin}" />
+                <DataGridTextColumn Width="150" Header="Justification" Binding="{Binding Justification}" />
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <!-- Bouton Modifier -->
+                                <Button Background="Green" Content="Modifier" Width="80" Margin="5" Click="Btn_Modifier_Click" Tag="{Binding IdDemande}">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsNew}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsNew}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+
+                                <!-- Bouton Supprimer -->
+                                <Button Background="Red" Content="Supprimer" Width="80" Margin="5" Click="Btn_Supprimer_Click" Tag="{Binding IdDemande}">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsNew}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsNew}" Value="False">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Statut">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Statut}" FontSize="16">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <!-- En attente : Jaune -->
+                                            <DataTrigger Binding="{Binding Statut}" Value="En attente">
+                                                <Setter Property="Foreground" Value="Yellow" />
+                                            </DataTrigger>
+
+                                            <!-- Refusé : Rouge -->
+                                            <DataTrigger Binding="{Binding Statut}" Value="Refusé">
+                                                <Setter Property="Foreground" Value="Red" />
+                                            </DataTrigger>
+
+                                            <!-- Approuvé : Vert -->
+                                            <DataTrigger Binding="{Binding Statut}" Value="Approuvé">
+                                                <Setter Property="Foreground" Value="Green" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
