@@ -49,6 +49,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 MessageBox.Show("Veuillez selectionner un employe");
                 return null;
             }
+
             int idEmploye = int.Parse(idEmployeSelectionne);
 
             if (!DatePickerDateGeneration.SelectedDate.HasValue)
@@ -58,7 +59,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             }
             DateOnly dateGeneration = DateOnly.FromDateTime(DatePickerDateGeneration.SelectedDate.Value);
 
-            TextRange textRange = new TextRange(RichTextBoxContenuRapport.Document.ContentStart, RichTextBoxContenuRapport.Document.ContentEnd);
+            TextRange textRange = new(RichTextBoxContenuRapport.Document.ContentStart, RichTextBoxContenuRapport.Document.ContentEnd);
             string contenuRapport = textRange.Text;
             if (contenuRapport is null)
             {
@@ -76,6 +77,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             Btn_Modifier.IsEnabled = false;
             Btn_Supprimer.IsEnabled = false;
             Btn_Imprimer.IsEnabled = false;
+            ViderChamps();
         }
 
 
@@ -97,7 +99,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 Btn_Supprimer.IsEnabled = DatagridRapport.SelectedItem != null;
                 Btn_Imprimer.IsEnabled = DatagridRapport.SelectedItem != null;
                 ComboBoxPeriode.SelectedItem = rapportassiduite.PeriodeRapport;
-                ComboBoxEmploye.SelectedValue = rapportassiduite.IdEmploye;
+                ComboBoxEmploye.SelectedValue = rapportassiduite.IdEmployeNavigation.Nom;
                 DatePickerDateGeneration.SelectedDate = rapportassiduite.DateGeneration;
                 //RichTextBoxContenuRapport.Document.Blocks.Clear();
                 RichTextBoxContenuRapport.Document.Blocks.Add(new Paragraph(new Run(rapportassiduite.ContenuRapport)));
@@ -111,7 +113,6 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             ComboBoxEmploye.SelectedIndex = -1;
             DatePickerDateGeneration.SelectedDate = null;
             RichTextBoxContenuRapport.Document.Blocks.Clear();
-            Window_Loaded(this, new RoutedEventArgs());
         }
         //Generation du rapport
         private void Btn_Generer_Click(object sender, RoutedEventArgs e)
@@ -187,6 +188,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 }
                 else
                 {
+
                     //Recuperer le rapport a modifier
                     Rapportassiduite? rapportAModifier = gestgrhContext.Rapportassiduites.Find(rapportassiduite.IdRapport);
                     if (rapportAModifier is null)
@@ -209,6 +211,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     {
                         MessageBox.Show("Erreur lors de la modification du rapport: " + ex.Message);
                         ViderChamps();
+                        return;
                     }
                 }
             }
@@ -237,19 +240,28 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     MessageBox.Show("Rapport introuvable");
                     return;
                 }
-                //Supprimer le rapport de la base de donnees
-                try
+                MessageBoxResult messageBoxResult = MessageBox.Show("Voulez-vous vraiment supprimer ce rapport ?", "Confirmation de suppression", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.No)
                 {
-                    gestgrhContext.Rapportassiduites.Remove(rapportASupprimer);
-                    gestgrhContext.SaveChanges();
-                    MessageBox.Show("Rapport supprimé avec succes");
-                    ViderChamps();
+                    return;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur lors de la suppression du rapport: " + ex.Message);
-                    ViderChamps();
+                else
+                { 
+                    //Supprimer le rapport de la base de donnees
+                    try
+                    {
+                        gestgrhContext.Rapportassiduites.Remove(rapportASupprimer);
+                        gestgrhContext.SaveChanges();
+                        MessageBox.Show("Rapport supprimé avec succes");
+                        ViderChamps();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de la suppression du rapport: " + ex.Message);
+                        ViderChamps();
+                    } 
                 }
+
             }
         }
 

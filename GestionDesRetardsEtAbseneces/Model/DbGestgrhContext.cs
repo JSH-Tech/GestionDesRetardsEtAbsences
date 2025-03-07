@@ -82,10 +82,6 @@ public partial class DbGestgrhContext : DbContext
             entity.Property(e => e.IdEmploye)
                 .HasComment("Foreign Key")
                 .HasColumnName("idEmploye");
-            entity.Property(e => e.MotDePasseHash)
-                .HasMaxLength(255)
-                .HasComment("Hashed Password");
-            entity.Property(e => e.NiveauAcces).HasComment("Access Level");
             entity.Property(e => e.TokenSession)
                 .HasMaxLength(255)
                 .HasComment("Session Token");

@@ -15,7 +15,7 @@ public partial class Notification
 
     public DateTime? DateEnvoi { get; set; }
 
-    public bool? Statut { get; set; }
+    public bool Statut { get; set; }
 
     public virtual Employe IdEmployeNavigation { get; set; } = null!;
 }

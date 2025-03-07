@@ -16,11 +16,6 @@ public partial class Authentification
     public int IdEmploye { get; set; }
 
     /// <summary>
-    /// Hashed Password
-    /// </summary>
-    public string MotDePasseHash { get; set; } = null!;
-
-    /// <summary>
     /// Last Connection Date
     /// </summary>
     public DateTime DateDerniereConnexion { get; set; }
@@ -34,11 +29,6 @@ public partial class Authentification
     /// Expiration Date
     /// </summary>
     public DateTime DateExpiration { get; set; }
-
-    /// <summary>
-    /// Access Level
-    /// </summary>
-    public int NiveauAcces { get; set; }
 
     public virtual Employe IdEmployeNavigation { get; set; } = null!;
 }
