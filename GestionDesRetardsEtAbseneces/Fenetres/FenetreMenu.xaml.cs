@@ -37,7 +37,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
         private void Btn_Employes_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+          //  this.Hide();
 
             FenetreEmploye fenetreEmploye = new FenetreEmploye();
             fenetreEmploye.ShowDialog();
