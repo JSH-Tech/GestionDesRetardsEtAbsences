@@ -2,9 +2,6 @@
 {
     public static class SessionUtilisateur
     {
-
-
-        //propriete
         public static int IdEmploye { get; set; }
         public static string? Nom { get; set; }
         public static string? Prenom { get; set; }
