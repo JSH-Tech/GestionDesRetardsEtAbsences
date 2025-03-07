@@ -25,12 +25,12 @@ namespace GestionDesRetardsEtAbseneces
         {
             string username = NomUser.Text;
             string password = MotDePasse.Password;
-            Employe? employeConnecter=AuthentifierUtilisateur(username, password);
+            Employe? employeConnecter = AuthentifierUtilisateur(username, password);
             if (employeConnecter is not null)
             {
                 try
                 {
-                    sessionEtAuthentification.MettreAJourAuthentification(employeConnecter.IdEmploye);
+                     sessionEtAuthentification.MettreAJourAuthentification(employeConnecter.IdEmploye);
                     FenetreMenu fenetreMenu = new();
                     fenetreMenu.Show();
                     this.Close(); // Ferme la fenêtre de connexion

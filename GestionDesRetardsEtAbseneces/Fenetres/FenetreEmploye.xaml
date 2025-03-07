@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
-        Title="FenetreEmploye" Height="450" Width="800">
+        Title="FenetreEmploye" Height="450" Width="800" Background="AliceBlue">
     <Grid Margin="10">
 
         <!-- En-tête -->
-        <Border Background="#447AA0" Height="60" VerticalAlignment="Top" CornerRadius="10">
+        <Border Background="#1F618D" Height="60" VerticalAlignment="Top" CornerRadius="10">
             <TextBlock Text="Gestion des Employés" Foreground="White" FontSize="24" FontWeight="Bold" 
            HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
@@ -67,22 +67,22 @@
 
             <!-- Boutons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Margin="10">
-                <Button x:Name="btnAjouter" Width="120" Height="40" Background="#27AE60" Foreground="White" FontWeight="Bold"
-                Margin="5 " Click="btnAjouter_Click"  >
+                <Button x:Name="btnAjouter" Width="100" Height="40" Background="#27AE60" Foreground="White" FontWeight="Light"
+                Margin="5 " Click="btnAjouter_Click" Style="{StaticResource StyledButton}" >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="✅ " />
                         <TextBlock Text="Ajouter" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="btnModifier" Width="120" Height="40" Background="Blue" Foreground="White" FontWeight="Bold" 
-                Margin="5" IsEnabled="False"  Click="btnModifier_Click" >
+                <Button x:Name="btnModifier" Width="100" Height="40" Background="#3498DB" Foreground="White" FontWeight="Light" 
+                Margin="5" IsEnabled="False"  Click="btnModifier_Click"  >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="✏️ " />
                         <TextBlock Text="Modifier" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="btnAnnuler" Width="120" Height="40" Background="red" Foreground="White" FontWeight="Bold"
-                Margin="5"  Click="btnAnnuler_Click" >
+                <Button x:Name="btnAnnuler" Width="100" Height="40" Background="red" Foreground="White" FontWeight="Light"
+                Margin="5"  Click="btnAnnuler_Click"  Style="{StaticResource StyledButton}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="❌ " />
                         <TextBlock Text="Annuler" />
@@ -91,19 +91,27 @@
             </StackPanel>
 
             <!-- Tableau des employés -->
-            <DataGrid x:Name="EmployeDataGrid" Grid.Row="2" Margin="0,20,0,20" AutoGenerateColumns="False" 
-              HeadersVisibility="Column" BorderBrush="#2980B9" BorderThickness="1"
-              Background="White" SelectionChanged="EmployeDataGrid_SelectionChanged" 
-              SelectionMode="Single" AlternationCount="2">
+            <DataGrid x:Name="EmployeDataGrid" AutoGenerateColumns="False" SelectionChanged="EmployeDataGrid_SelectionChanged"
+          HeadersVisibility="Column" Background="White"
+          BorderBrush="AliceBlue" BorderThickness="1"
+          SelectionMode="Single" AlternationCount="2"
+          RowBackground="WhiteSmoke" AlternatingRowBackground="#D6EAF8"
+          FontSize="14" FontWeight="Bold"
+          CanUserResizeColumns="True" CanUserResizeRows="False"
+          CanUserSortColumns="True" IsReadOnly="True"
+          ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+          Grid.Row="2" VerticalAlignment="Top"
+          HorizontalContentAlignment="Stretch"
+          VerticalContentAlignment="Stretch">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nom"  Width="100" Binding="{Binding Nom}"/>
-                    <DataGridTextColumn Header="Prénom" Width="100"  Binding="{Binding Prenom}"/>
-                    <DataGridTextColumn Header="Email" Width="150"  Binding="{Binding Email}"/>
-                    <DataGridTextColumn Header="Rôle " Width="150"  Binding="{Binding RoleEmploye }"/>
-                    <DataGridTextColumn Header="Statut" Width="100"  Binding="{Binding Statut}"/>
-
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
+                    <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="*"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="2*"/>
+                    <DataGridTextColumn Header="Rôle" Binding="{Binding RoleEmploye}" Width="*"/>
+                    <DataGridTextColumn Header="Statut" Binding="{Binding Statut}" Width="*"/>
                 </DataGrid.Columns>
+
             </DataGrid>
         </Grid>
-        </Grid>
+    </Grid>
 </Window>
