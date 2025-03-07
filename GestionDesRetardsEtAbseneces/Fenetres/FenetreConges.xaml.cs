@@ -1,3 +1,4 @@
+﻿using GestionDesRetardsEtAbseneces.Controllers;
 ﻿using GestionDesRetardsEtAbseneces.Model;
 using MySql.Data.MySqlClient;
 using System;
@@ -58,6 +59,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         {
 
             InitializeComponent();
+            if (Utilitaires.timerInactivite.IsEnabled)
+            {
+                Utilitaires.timerInactivite.Stop();
+            }
+            Utilitaires.InitialiserTimer(this);
 
             Demandes = new ObservableCollection<DemandeConge>();
             this.DataContext = this;

@@ -27,6 +27,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -44,6 +45,7 @@
             <Button Content="🔔 Centre de Notifications" Name="Btn_Notifications" Grid.Row="2" Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_Notifications_Click"/>
             <Button Content="🔔 Mes Notifications" Name="Btn_NotificationsEmploye" Grid.Row="2" Grid.Column="1"  Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_NotificationsEmploye_Click"/>
             <Button Content="📊 Tableau de Bord" Name="Btn_Dashboard" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StyledButton}" />
+            <Button Content="Deconnexion" Name="Btn_Deconnexion" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource StyledButton}" Click="Btn_Deconnexion_Click" />
 
         </Grid>
     </Grid>
