@@ -1,4 +1,5 @@
-﻿using GestionDesRetardsEtAbseneces.Model;
+﻿using GestionDesRetardsEtAbseneces.Controllers;
+using GestionDesRetardsEtAbseneces.Model;
 using System.Windows;
 
 namespace GestionDesRetardsEtAbseneces.Fenetres
@@ -8,6 +9,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
     /// </summary>
     public partial class FenetreMenu : Window
     {
+        Utilitaires utilitaires = new();
         public FenetreMenu()
         {
             InitializeComponent();
@@ -57,5 +59,12 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             fenetreNotification.ShowDialog();
             this.Show();
         }
+
+        private void Btn_NotificationsEmploye_Click(object sender, RoutedEventArgs e)
+        {
+            
+            utilitaires.AfficherNotifications(SessionUtilisateur.IdEmploye);
+        }
+
     }
 }
