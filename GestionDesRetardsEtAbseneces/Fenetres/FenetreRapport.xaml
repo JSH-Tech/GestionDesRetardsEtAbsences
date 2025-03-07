@@ -53,7 +53,7 @@
         </DockPanel>
 
         <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0">
-            <Button Content="Generer" Name="Btn_Generer" Margin="0,0,10,0" Width="100" Click="Btn_Generer_Click"/>
+            <Button Content="Generer" Name="Btn_Generer" Margin="0,0,10,0" Width="100" Click="Btn_Generer_Click" RenderTransformOrigin="19.156,11.21"/>
             <Button Content="Modifier" Name="Btn_Modifier" Margin="0,0,10,0" Width="100" Click="Btn_Modifier_Click"/>
             <Button Content="Supprimer" Name="Btn_Supprimer" Margin="0,0,10,0" Width="100" Click="Btn_Supprimer_Click"/>
             <Button Content="Imprimer" Name="Btn_Imprimer" Width="100" Click="Btn_Imprimer_Click"/>

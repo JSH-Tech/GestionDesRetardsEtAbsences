@@ -32,5 +32,22 @@ namespace GestionDesRetardsEtAbseneces
             FenetreRapport fenetreRapport = new FenetreRapport();
             fenetreRapport.Show();
         }
+
+        private void Btn_Employes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+      /*  private void OpenFenetreConges()
+        {
+            FenetreConges fenetreConges = new FenetreConges();
+            fenetreConges.Show(); // Affiche FenetreConges comme une nouvelle fenêtre
+        }
+       
+        */
+        private void Btn_Notifications_Click(object sender, RoutedEventArgs e)
+        {
+
+            //OpenFenetreConges();
+        }
     }
 }
