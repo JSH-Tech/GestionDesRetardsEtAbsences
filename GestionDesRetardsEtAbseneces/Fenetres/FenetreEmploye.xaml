@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="FenetreEmploye" Height="450" Width="800">
     <Grid>
-        
+        <Button Content="Button1" HorizontalAlignment="Left" Margin="272,74,0,0" VerticalAlignment="Top"/>
+        <RadioButton Content="RadioButton1" HorizontalAlignment="Left" Margin="215,182,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

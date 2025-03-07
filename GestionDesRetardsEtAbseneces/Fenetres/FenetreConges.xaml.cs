@@ -12,7 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;  
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
@@ -27,15 +27,15 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
         public class DemandeConge
         {
-          
-                public int IdDemande { get; set; }
-                public string Nom { get; set; }
-                public string Prenom { get; set; }
-                public string TypeConge { get; set; }
-                public DateTime DateDebut { get; set; }
-                public DateTime DateFin { get; set; }
-                public string Justification { get; set; }
-                public string Statut { get; set; }
+
+            public int IdDemande { get; set; }
+            public string Nom { get; set; }
+            public string Prenom { get; set; }
+            public string TypeConge { get; set; }
+            public DateTime DateDebut { get; set; }
+            public DateTime DateFin { get; set; }
+            public string Justification { get; set; }
+            public string Statut { get; set; }
             public string NomComplet
             {
                 get
@@ -207,6 +207,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             }
             else
             {
+                //ceci est un commentaire
                 // Si une demande est en modification, on met à jour la demande existante
                 string query = "UPDATE demandeconge SET idEmploye = @idEmploye, typeConge = @typeConge, " +
                                "dateDebut = @dateDebut, dateFin = @dateFin, justification = @justification WHERE idDemande = @idDemande";
@@ -321,7 +322,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                             DateDebutDatePicker.SelectedDate = Convert.ToDateTime(reader["dateDebut"]);
                             DateFinDatePicker.SelectedDate = Convert.ToDateTime(reader["dateFin"]);
                             JustificatifTextBox.Text = reader["justification"].ToString();
-                            
+
 
                             // Désactive le bouton Soumettre et change son texte en Enregistrer
                             Btn_Soumettre.Content = "Enregistrer";
@@ -455,9 +456,9 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             NomCompletTextBox.Clear();
             JustificatifTextBox.Clear();
 
-            myComboBox.SelectedIndex = -1;  
-            DateDebutDatePicker.SelectedDate = null;  
-            DateFinDatePicker.SelectedDate = null;  
+            myComboBox.SelectedIndex = -1;
+            DateDebutDatePicker.SelectedDate = null;
+            DateFinDatePicker.SelectedDate = null;
         }
 
 
@@ -470,7 +471,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
 
 
-       
+
     }
 
 }
