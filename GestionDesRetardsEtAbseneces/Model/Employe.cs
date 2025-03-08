@@ -30,4 +30,6 @@ public partial class Employe
     public virtual ICollection<Rapportassiduite> Rapportassiduites { get; set; } = new List<Rapportassiduite>();
 
     public virtual ICollection<Retard> Retards { get; set; } = new List<Retard>();
+
+    public string NomComplet=> $"{Nom} {Prenom}";
 }
