@@ -47,16 +47,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             //Desactiver les bouttons modifier et supprimer
             Btn_Modifier.IsEnabled = false;
             Btn_Supprimer.IsEnabled = false;
-
-            ComboBox_Type.SelectedItem = null;
-            ComboBox_Status.SelectedItem = null;
-            ComboBox_Employe.SelectedItem = null;
-            DatePicker_DateAbsence.SelectedDate = null;
-            TextBoxJustificatif.Text = "";
+            DataGrid_Absence.SelectedItem = null;
         }
         public bool ValideBool(string valide)
         {
-            if (valide == "Valide")
+            if (string.Equals(valide,"Valide",StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
@@ -68,26 +63,28 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         //Fontion pour recuperer les valeurs saisies
         public (bool isValid, int idEmploye, string type, bool status, DateTime dateAbsence, string justificatif)? RecupererInformations()
         {
-            int idEmploye = ComboBox_Employe.SelectedIndex;
-            if (idEmploye == -1)
+            int idEmployeSelectionne = ComboBox_Employe.SelectedIndex;
+            if (idEmployeSelectionne == -1)
             {
                 MessageBox.Show("Veuillez selectionner un employé", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
-            string? type = ComboBox_Type.SelectedValue.ToString();
+            int idEmploye = (int)ComboBox_Employe.SelectedValue;
+
+            string? type = ComboBox_Type.Text;
             if (string.IsNullOrWhiteSpace(type) || string.IsNullOrEmpty(type))
             {
                 MessageBox.Show("Veuillez selectionner un type d'absence", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
 
-            string? statusSaisie = ComboBox_Status.SelectedValue.ToString();
+            string? statusSaisie = ComboBox_Status.Text;
             if (string.IsNullOrWhiteSpace(statusSaisie) || string.IsNullOrEmpty(statusSaisie))
             {
                 MessageBox.Show("Veuillez selectionner un status", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
-            bool status= ValideBool(statusSaisie);
+            bool status = ValideBool(statusSaisie);
             if (!DatePicker_DateAbsence.SelectedDate.HasValue)
             {
                 MessageBox.Show("Veuillez selectionner une date", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -131,14 +128,16 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 };
                 dbGestgrhContext.Absences.Add(absence);
                 dbGestgrhContext.SaveChanges();
+                DataGrid_Absence.Items.Refresh();
                 MessageBox.Show("Absence ajoutée avec succès", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                 ViderChamps();
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Erreur: {ex.Message}\n{ex.StackTrace}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                ViderChamps();
             }
+
 
         }
 
@@ -165,9 +164,9 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             {
                 if (DataGrid_Absence.SelectedItem is Absence absenceSelectionnee)
                 {
-                    if (absenceSelectionnee.IdEmploye==idEmploye && absenceSelectionnee.DateAbsence==dateAbsence && absenceSelectionnee.Valide==status &&
-                        string.Equals(absenceSelectionnee.TypeAbsence,type,StringComparison.OrdinalIgnoreCase) && 
-                        string.Equals(absenceSelectionnee.Justification,justificatif,StringComparison.OrdinalIgnoreCase))
+                    if (absenceSelectionnee.IdEmploye == idEmploye && absenceSelectionnee.DateAbsence == dateAbsence && absenceSelectionnee.Valide == status &&
+                        string.Equals(absenceSelectionnee.TypeAbsence, type, StringComparison.OrdinalIgnoreCase) &&
+                        string.Equals(absenceSelectionnee.Justification, justificatif, StringComparison.OrdinalIgnoreCase))
                     {
                         MessageBox.Show("Aucune modification effectuée", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
@@ -178,14 +177,66 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     absenceSelectionnee.DateAbsence = dateAbsence;
                     absenceSelectionnee.Justification = justificatif;
                     dbGestgrhContext.SaveChanges();
+                    DataGrid_Absence.Items.Refresh();
                     MessageBox.Show("Absence modifiée avec succès", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                     ViderChamps();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Erreur: {ex.Message}\n{ex.StackTrace}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                ViderChamps();
             }
+        }
+
+        private void DataGrid_Absence_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (DataGrid_Absence.SelectedItem is null)
+            {
+                ViderChamps();
+                return;
+            }
+                Btn_Modifier.IsEnabled = DataGrid_Absence.SelectedItem != null;
+                Btn_Supprimer.IsEnabled = DataGrid_Absence.SelectedItem != null;
+            if (DataGrid_Absence.SelectedItem is Absence absenceSelectionnee)
+            {
+                ComboBox_Employe.SelectedValue = absenceSelectionnee.IdEmploye;
+                ComboBox_Type.Text = absenceSelectionnee.TypeAbsence;
+                ComboBox_Status.Text = absenceSelectionnee.Valide ? "Valide" : "Non Valide";
+                DatePicker_DateAbsence.SelectedDate = absenceSelectionnee.DateAbsence;
+                TextBoxJustificatif.Text = absenceSelectionnee.Justification;
+                return;
+            }
+        }
+
+        //Bouton supprimer
+        private void Btn_Supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGrid_Absence.SelectedItem is null)
+            {
+                MessageBox.Show("Veuillez sélectionner une absence à supprimer!", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (DataGrid_Absence.SelectedItem is Absence absenceSelectionnee)
+            {
+                MessageBoxResult result = MessageBox.Show("Voulez-vous vraiment supprimer cette absence?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.No)
+                {
+                    ViderChamps();
+                    return;
+                }
+
+                dbGestgrhContext.Absences.Remove(absenceSelectionnee);
+                dbGestgrhContext.SaveChanges();
+                DataGrid_Absence.Items.Refresh();
+                MessageBox.Show("Absence supprimée avec succès", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                ViderChamps();
+            }
+        }
+
+        private void Btn_Actualiser_Click(object sender, RoutedEventArgs e)
+        {
+            ViderChamps();
         }
     }
 }

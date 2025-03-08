@@ -20,4 +20,5 @@ public partial class Absence
     public virtual Employe IdEmployeNavigation { get; set; } = null!;
 
     public string StatutText => Valide ? "Valide" : "Non Valide";
+
 }

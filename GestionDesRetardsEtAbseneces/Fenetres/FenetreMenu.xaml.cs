@@ -38,6 +38,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 Btn_Notifications.IsEnabled = false;
                 Btn_Retard.IsEnabled = false;
                 Btn_ValidationConges.IsEnabled = false;
+                Btn_Absence.IsEnabled = false;  
 
             }
         }
