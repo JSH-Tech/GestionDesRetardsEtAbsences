@@ -82,5 +82,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             FenetreDashboard fenetreDashboard = new FenetreDashboard();
             fenetreDashboard.Show();
         }
+
+        private void Btn_Absence_Click(object sender, RoutedEventArgs e)
+        {
+            FenetreAbsence fenetreAbsence = new FenetreAbsence();
+            fenetreAbsence.Show();
+        }
     }
 }

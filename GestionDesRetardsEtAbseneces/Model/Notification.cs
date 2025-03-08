@@ -19,5 +19,6 @@ public partial class Notification
 
     public virtual Employe IdEmployeNavigation { get; set; } = null!;
 
-    public string StatutText=>Statut?"Lue":"Non Lue";
+    public string StatutText => Statut ? "Lue" : "Non Lue";
+
 }

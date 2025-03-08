@@ -92,17 +92,17 @@
 
             <!-- Tableau des employés -->
             <DataGrid x:Name="EmployeDataGrid" AutoGenerateColumns="False" SelectionChanged="EmployeDataGrid_SelectionChanged"
-          HeadersVisibility="Column" Background="White"
-          BorderBrush="AliceBlue" BorderThickness="1"
-          SelectionMode="Single" AlternationCount="2"
-          RowBackground="WhiteSmoke" AlternatingRowBackground="#D6EAF8"
-          FontSize="14" FontWeight="Bold"
-          CanUserResizeColumns="True" CanUserResizeRows="False"
-          CanUserSortColumns="True" IsReadOnly="True"
-          ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
-          Grid.Row="2" VerticalAlignment="Top"
-          HorizontalContentAlignment="Stretch"
-          VerticalContentAlignment="Stretch">
+              HeadersVisibility="Column" Background="White"
+              BorderBrush="AliceBlue" BorderThickness="1"
+              SelectionMode="Single" AlternationCount="2"
+              RowBackground="WhiteSmoke" AlternatingRowBackground="#D6EAF8"
+              FontSize="14" FontWeight="Bold"
+              CanUserResizeColumns="True" CanUserResizeRows="False"
+              CanUserSortColumns="True" IsReadOnly="True"
+              ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+              Grid.Row="2" VerticalAlignment="Top"
+              HorizontalContentAlignment="Stretch"
+              VerticalContentAlignment="Stretch">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
                     <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="*"/>
