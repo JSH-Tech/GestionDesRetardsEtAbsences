@@ -76,5 +76,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         {
             Utilitaires.Deconnexion(this);
         }
+
+        private void Btn_Dashboard_Click(object sender, RoutedEventArgs e)
+        {
+            FenetreDashboard fenetreDashboard = new FenetreDashboard();
+            fenetreDashboard.Show();
+        }
     }
 }

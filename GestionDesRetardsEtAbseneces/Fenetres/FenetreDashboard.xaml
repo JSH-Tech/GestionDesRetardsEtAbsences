@@ -1,0 +1,41 @@
+﻿<Window x:Class="GestionDesRetardsEtAbseneces.Fenetres.FenetreDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
+        mc:Ignorable="d"
+        Title="FenetreDashboard" Height="517" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,20">
+            <Border CornerRadius="10" Background="White" Padding="20" Margin="10" Width="200">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Opacity="0.3" BlurRadius="8" />
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="Absences:" FontSize="18" FontWeight="Bold" />
+                    <TextBlock x:Name="AbsencesCount" Foreground="Red" FontSize="24" FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+
+            <Border CornerRadius="10" Background="White" Padding="20" Margin="10" Width="200">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Opacity="0.3" BlurRadius="8" />
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="Retards:" FontSize="18" FontWeight="Bold" />
+                    <TextBlock x:Name="RetardsCount" Foreground="Red" FontSize="24" FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <Border Grid.Row="1" Background="LightGray" Height="300" CornerRadius="10">
+            <TextBlock x:Name="TextBlockGraphique"  Text="Graphique ici" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" />
+        </Border>
+    </Grid>
+</Window>
