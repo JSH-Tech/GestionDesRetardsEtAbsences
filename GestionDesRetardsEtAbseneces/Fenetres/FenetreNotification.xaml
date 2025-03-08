@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="NOTIFICATIONS" Height="450" Width="700" >
+        Title="NOTIFICATIONS" Height="450" Width="Auto" >
     <Window.Resources>
         <CollectionViewSource x:Key="notificationViewSource"/>
         <CollectionViewSource x:Key="employeViewSource"/>
@@ -21,29 +21,29 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Content="Gerer les notifications" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="30"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" >
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="1"  >
             <Label Content="Type de notification"/>
-            <ComboBox Width="140" Name="ComboBox_TypeNotification" Height="22">
+            <ComboBox Width="140" Name="ComboBox_TypeNotification" Height="22" Padding="0,0,10,0">
                 <ComboBoxItem>Absence non justifiée</ComboBoxItem>
                 <ComboBoxItem>Retard enregistré</ComboBoxItem>
                 <ComboBoxItem>Demande de congé approuvée/refusée</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="2" Grid.Row="1" >
             <Label Content="Employe"/>
             <ComboBox ItemsSource="{Binding Source={StaticResource employeViewSource}}" Name="ComboBox_Employe" Width="140" Height="22" IsEditable="True" DisplayMemberPath="Nom" SelectedValuePath="IdEmploye"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" >
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Grid.Column="1" >
             <Label Content="Date d'envoie"/>
             <DatePicker Name="DatePicker_DateEnvoie"/>
         </StackPanel>
 
-        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Height="100" Width="450" HorizontalAlignment="Center" Margin="0,10,10,0">
+        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Height="100" Width="450" HorizontalAlignment="Center" Margin="0,10,0,0">
             <Label Content="Message"/>
             <RichTextBox Name="RichtxtBox_Message"/>
         </DockPanel>

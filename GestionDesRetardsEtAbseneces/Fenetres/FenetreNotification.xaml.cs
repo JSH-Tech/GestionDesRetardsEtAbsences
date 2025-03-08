@@ -81,6 +81,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             ComboBox_Employe.SelectedIndex = -1;
             DatePicker_DateEnvoie.SelectedDate = null;
             RichtxtBox_Message.Document.Blocks.Clear();
+            Window_Loaded(this, new RoutedEventArgs());
         }
 
         /// <summary>
@@ -93,7 +94,6 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             Btn_Modifier.IsEnabled = false;
             Btn_Supprimer.IsEnabled = false;
             DataGrid_Notification.SelectedItem = null;
-            ViderChamps();
         }
 
         private void DataGrid_Notification_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,10 +108,10 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
             if (DataGrid_Notification.SelectedItem is Notification notificationSelectionnee)
             {
-                ComboBox_TypeNotification.SelectedItem = notificationSelectionnee.TypeNotification;
+                ComboBox_TypeNotification.Text = notificationSelectionnee.TypeNotification;
                 DatePicker_DateEnvoie.SelectedDate = notificationSelectionnee.DateEnvoi;
                 RichtxtBox_Message.Document.Blocks.Add(new Paragraph(new Run(notificationSelectionnee.MessageNotification)));
-                ComboBox_Employe.SelectedItem = notificationSelectionnee.IdEmployeNavigation.Nom;
+                ComboBox_Employe.SelectedValue = notificationSelectionnee.IdEmploye;
             }
         }
         /// <summary>
