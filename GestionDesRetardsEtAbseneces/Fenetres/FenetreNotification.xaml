@@ -49,10 +49,10 @@
             <RichTextBox Name="RichtxtBox_Message"/>
         </DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0">
-            <Button Content="Envoyer" Name="Btn_Envoyer" Margin="0,0,10,0" Width="100" Click="Btn_Envoyer_Click"/>
-            <Button Content="Modifier" Name="Btn_Modifier" Margin="0,0,10,0" Width="100" Click="Btn_Modifier_Click"/>
-            <Button Content="Supprimer" Name="Btn_Supprimer" Margin="0,0,10,0" Width="100" Click="Btn_Supprimer_Click"/>
-            <Button Content="Actualiser" Name="Btn_Actualiser" Margin="0,0,00,0" Width="100" Click="Btn_Actualiser_Click"/>
+            <Button Content="Envoyer" Name="Btn_Envoyer" Margin="0,0,10,0" Width="100" Click="Btn_Envoyer_Click" Background="#3498DB"/>
+            <Button Content="Modifier" Name="Btn_Modifier" Margin="0,0,10,0" Width="100" Click="Btn_Modifier_Click" Background="#27AE60"/>
+            <Button Content="Supprimer" Name="Btn_Supprimer" Margin="0,0,10,0" Width="100" Click="Btn_Supprimer_Click"  Background="Red"/>
+            <Button Content="Actualiser" Name="Btn_Actualiser" Margin="0,0,00,0" Width="100" Click="Btn_Actualiser_Click " Background="#8E44AD"/>
         </StackPanel>
 
         <DataGrid ItemsSource="{Binding Source={StaticResource notificationViewSource}}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" Margin="0,10,0,0" HorizontalAlignment="Center" Name="DataGrid_Notification" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" SelectionChanged="DataGrid_Notification_SelectionChanged">

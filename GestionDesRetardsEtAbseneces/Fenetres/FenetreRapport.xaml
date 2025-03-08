@@ -64,15 +64,15 @@
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="2" Margin="10">
-                <Button Content="Générer" Name="Btn_Generer" Width="100" Click="Btn_Generer_Click"
+                <Button Content="Générer" Name="Btn_Generer" Width="100" Click="Btn_Generer_Click" Style="{StaticResource StyledButton}"
                  Background="#27AE60" Foreground="White" FontWeight="Bold"/>
-                <Button Content="Modifier" Name="Btn_Modifier" Width="100" Click="Btn_Modifier_Click"
-                 Background="#27AE60" Foreground="White" FontWeight="Bold"/>
-                <Button Content="Supprimer" Name="Btn_Supprimer" Width="100" Click="Btn_Supprimer_Click"
+                <Button Content="Modifier" Name="Btn_Modifier" Width="100" Click="Btn_Modifier_Click" Style="{StaticResource StyledButton}"
+                 Background="#3498DB" Foreground="White" FontWeight="Bold"/>
+                <Button Content="Supprimer" Name="Btn_Supprimer" Width="100" Click="Btn_Supprimer_Click" Style="{StaticResource StyledButton}"
                  Background="Red" Foreground="White" FontWeight="Bold"/>
-                <Button Content="Imprimer" Name="Btn_Imprimer" Width="100" Click="Btn_Imprimer_Click"
+                <Button Content="Imprimer" Name="Btn_Imprimer" Width="100" Click="Btn_Imprimer_Click" Style="{StaticResource StyledButton}"
                  Background="Gray" Foreground="White" FontWeight="Bold"/>
-                <Button Content="Actualiser" Name="Btn_Actualiser" Width="100" Click="Btn_Actualiser_Click"
+                <Button Content="Actualiser" Name="Btn_Actualiser" Width="100" Click="Btn_Actualiser_Click" Style="{StaticResource StyledButton}"
                  Background="#8E44AD" Foreground="White" FontWeight="Bold"/>
             </StackPanel>
 
