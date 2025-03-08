@@ -98,16 +98,17 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 ViderChamps();
                 return;
             }
-            if (DatagridRapport.SelectedItem is Rapportassiduite rapportassiduite)
-            {
                 Btn_Modifier.IsEnabled = DatagridRapport.SelectedItem != null;
                 Btn_Supprimer.IsEnabled = DatagridRapport.SelectedItem != null;
                 Btn_Imprimer.IsEnabled = DatagridRapport.SelectedItem != null;
+            if (DatagridRapport.SelectedItem is Rapportassiduite rapportassiduite)
+            {
                 ComboBoxPeriode.Text = rapportassiduite.PeriodeRapport;
                 ComboBoxEmploye.SelectedValue = rapportassiduite.IdEmploye;
                 DatePickerDateGeneration.SelectedDate = rapportassiduite.DateGeneration;
                 //RichTextBoxContenuRapport.Document.Blocks.Clear();
                 RichTextBoxContenuRapport.Document.Blocks.Add(new Paragraph(new Run(rapportassiduite.ContenuRapport)));
+                return;
             }
         }
 
@@ -149,6 +150,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             {
                 gestgrhContext.Rapportassiduites.Add(newrapportassiduite);
                 gestgrhContext.SaveChanges();
+                DatagridRapport.Items.Refresh();
                 MessageBox.Show("Rapport generé avec succes");
                 ViderChamps();
             }
@@ -211,6 +213,8 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     try
                     {
                         gestgrhContext.SaveChanges();
+                        DatagridRapport.Items.Refresh();
+
                         MessageBox.Show("Rapport modifié avec succes");
                         ViderChamps();
                     }
@@ -250,6 +254,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 MessageBoxResult messageBoxResult = MessageBox.Show("Voulez-vous vraiment supprimer ce rapport ?", "Confirmation de suppression", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.No)
                 {
+                    ViderChamps();
                     return;
                 }
                 else
@@ -259,6 +264,8 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     {
                         gestgrhContext.Rapportassiduites.Remove(rapportASupprimer);
                         gestgrhContext.SaveChanges();
+                        DatagridRapport.Items.Refresh();
+
                         MessageBox.Show("Rapport supprimé avec succes");
                         ViderChamps();
                     }

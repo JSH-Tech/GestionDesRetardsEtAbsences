@@ -85,6 +85,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             };
 
             // Ajouter la série au graphique
+            RetardsChart.Series.Clear();
             RetardsChart.Series.Add(series);
         }
 
@@ -98,7 +99,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 .Take(5)
                 .ToList();
 
-            // Créer un graphique en colonnes
+            // Créer un graphique en bande
             var series = new LiveCharts.Wpf.ColumnSeries
             {
                 Title = "Absences",
@@ -106,48 +107,71 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             };
 
             // Ajouter la série au graphique
+            AbsencesChart.Series.Clear();
             AbsencesChart.Series.Add(series);
         }
 
         private void Btn_Voir_Click(object sender, RoutedEventArgs e)
         {
-            int idEmploye=ComboBox_Employe.SelectedIndex;
-            MessageBox.Show(idEmploye.ToString());
-            AfficherGraphiqueEmploye(idEmploye);
+            if (ComboBox_Employe.SelectedItem is Employe employe)
+            {
+                AfficherGraphiqueEmploye(employe.IdEmploye);
+            }
+            else
+            {
+                MessageBox.Show("Veillez selectionner un employé");
+            }
         }
         public void AfficherGraphiqueEmploye(int idEmploye)
         {
-            // Obtenir les données pour l'employé sélectionné
-            int totalRetards = dbGestgrhContext.Retards.Count(r => r.IdEmploye == idEmploye);
-            int totalAbsences = dbGestgrhContext.Absences.Count(a => a.IdEmploye == idEmploye);
-            int totalConges = dbGestgrhContext.Demandeconges.Count(c => c.IdEmploye == idEmploye);
-
-            // Créer une série de données pour le graphique en secteurs
-            var series = new SeriesCollection
+            try
             {
-                new PieSeries
-                {
-                    Title = "Retards",
-                    Values = new ChartValues<int> { totalRetards },
-                    DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Absences",
-                    Values = new ChartValues<int> { totalAbsences },
-                    DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Congés",
-                    Values = new ChartValues<int> { totalConges },
-                    DataLabels = true
-                }
-            };
+                // Regrouper les comptages dans une seule requête pour optimiser la performance
+                var result = dbGestgrhContext.Employes
+                    .Where(e => e.IdEmploye == idEmploye)
+                    .Select(e => new
+                    {
+                        Retards = dbGestgrhContext.Retards.Count(r => r.IdEmploye == idEmploye),
+                        Absences = dbGestgrhContext.Absences.Count(a => a.IdEmploye == idEmploye),
+                        Conges = dbGestgrhContext.Demandeconges.Count(c => c.IdEmploye == idEmploye)
+                    })
+                    .FirstOrDefault();
 
-            // Ajouter la série au graphique
-            EmployerDetailChart.Series = series;
+                if (result == null)
+                {
+                    // Gérer le cas où l'employé n'existe pas
+                    MessageBox.Show("Aucun employé trouvé.");
+                    return;
+                }
+                if (result.Retards == 0 && result.Absences == 0 && result.Conges == 0)
+                {
+                    MessageBox.Show("Aucune donnée disponible pour cet employé.");
+                    return;
+                }
+
+                // Créer les séries de données pour le graphique
+                var series = new SeriesCollection
+                {
+                    new PieSeries { Title = "Retards", Values = new ChartValues<int> { result.Retards }, DataLabels = true },
+                    new PieSeries { Title = "Absences", Values = new ChartValues<int> { result.Absences }, DataLabels = true },
+                    new PieSeries { Title = "Congés", Values = new ChartValues<int> { result.Conges }, DataLabels = true }
+                };
+
+                // Mettre à jour le graphique
+                EmployerDetailChart.Series.Clear();
+                EmployerDetailChart.Series = series;
+
+                EmployerDetailChart.AnimationsSpeed = TimeSpan.FromMilliseconds(500);
+                EmployerDetailChart.HoverPushOut = 10;
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
+
 
     }
 }

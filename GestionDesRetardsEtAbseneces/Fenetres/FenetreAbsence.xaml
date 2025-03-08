@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Content="Employé :" Grid.Column="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="ComboBox_Employe" ItemsSource="{Binding Source={StaticResource employeViewSource}}" Grid.Column="1" Margin="5" SelectedValuePath="IdEmploye" DisplayMemberPath="NomComplet"/>
+            <ComboBox x:Name="ComboBox_Employe" ItemsSource="{Binding Source={StaticResource employeViewSource}}" Grid.Column="1" Margin="5" SelectedValuePath="IdEmploye" DisplayMemberPath="Nom"/>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1">
@@ -90,15 +90,14 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="Btn_Ajouter" Content="Ajouter" Grid.Column="0" Margin="5" Click="Btn_Ajouter_Click"/>
             <Button Name="Btn_Modifier" Content="Modifier" Grid.Column="1" Margin="5" Click="Btn_Modifier_Click"/>
-            <Button x:Name="Btn_Supprimer" Content="Supprimer" Grid.Column="2" Margin="5"/>
-            <Button x:Name="Btn_Actualiser" Content="Actualiser" Grid.Column="3" Margin="5"/>
+            <Button x:Name="Btn_Supprimer" Content="Supprimer" Grid.Column="2" Margin="5" Click="Btn_Supprimer_Click"/>
+            <Button x:Name="Btn_Actualiser" Content="Actualiser" Grid.Column="3" Margin="5" Click="Btn_Actualiser_Click"/>
         </Grid>
 
         <Grid Grid.Row="4" Grid.ColumnSpan="3">
-            <DataGrid Grid.Row="4" Grid.ColumnSpan="3" AutoGenerateColumns="False" Name="DataGrid_Absence" ItemsSource="{Binding Absences}">
+            <DataGrid Grid.Row="4" Grid.ColumnSpan="3" AutoGenerateColumns="False" Name="DataGrid_Absence" ItemsSource="{Binding Source={StaticResource absenceViewSource}}" SelectionChanged="DataGrid_Absence_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="150" Header="Nom" Binding="{Binding IdEmployeNavigation.Nom}"/>
-                    <DataGridTextColumn Width="150" Header="Prenom" Binding="{Binding IdEmployeNavigation.Prenom}"/>
                     <DataGridTextColumn Width="130" Header="Date" Binding="{Binding DateAbsence}"/>
                     <DataGridTextColumn Width="150" Header="Type" Binding="{Binding TypeAbsence}"/>
                     <DataGridTextColumn Width="150" Header="Justificatif" Binding="{Binding Justification}"/>

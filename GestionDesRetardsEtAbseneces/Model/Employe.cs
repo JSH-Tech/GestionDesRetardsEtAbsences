@@ -31,5 +31,5 @@ public partial class Employe
 
     public virtual ICollection<Retard> Retards { get; set; } = new List<Retard>();
 
-    public string NomComplet=> $"{Nom} {Prenom}";
+    public string NomComplet => $"{Nom} {Prenom}";
 }

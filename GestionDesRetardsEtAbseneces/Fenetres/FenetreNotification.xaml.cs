@@ -112,6 +112,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 DatePicker_DateEnvoie.SelectedDate = notificationSelectionnee.DateEnvoi;
                 RichtxtBox_Message.Document.Blocks.Add(new Paragraph(new Run(notificationSelectionnee.MessageNotification)));
                 ComboBox_Employe.SelectedValue = notificationSelectionnee.IdEmploye;
+                return;
             }
         }
         /// <summary>
@@ -147,6 +148,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             {
                 gestgrhContext.Notifications.Add(notification);
                 gestgrhContext.SaveChanges();
+                DataGrid_Notification.Items.Refresh();
                 MessageBox.Show("Notification envoyée avec succès", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                 ViderChamps();
 
@@ -201,6 +203,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                     try
                     {
                         gestgrhContext.SaveChanges();
+                        DataGrid_Notification.Items.Refresh();
                         MessageBox.Show("Notification modifiée avec succès", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                         ViderChamps();
                     }
@@ -234,10 +237,12 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                         MessageBox.Show("Notification introuvable", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
-                    gestgrhContext.Notifications.Remove(notification);
                     try
                     {
+                        gestgrhContext.Notifications.Remove(notification);
+
                         gestgrhContext.SaveChanges();
+                        DataGrid_Notification.Items.Refresh();
                         MessageBox.Show("Notification supprimée avec succès", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                         ViderChamps();
                     }
@@ -247,6 +252,11 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                         ViderChamps();
                         return;
                     }
+                }
+                else
+                {
+                    ViderChamps();
+                    return;
                 }
 
             }

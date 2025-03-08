@@ -52,7 +52,7 @@ public partial class DbGestgrhContext : DbContext
                 .HasColumnType("text")
                 .HasColumnName("justification");
             entity.Property(e => e.TypeAbsence)
-                .HasMaxLength(50)
+                .HasColumnType("text")
                 .HasColumnName("typeAbsence");
             entity.Property(e => e.Valide).HasColumnName("valide");
 
