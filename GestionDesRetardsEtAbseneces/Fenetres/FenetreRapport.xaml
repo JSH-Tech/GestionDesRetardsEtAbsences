@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="RAPPORT" Height="450" Width="700" >
+        Title="RAPPORT" Height="450" Width="Auto" >
     <Window.Resources>
         <CollectionViewSource x:Key="rapportViewSource"/>
         <CollectionViewSource x:Key="employeViewSource"/>
@@ -26,7 +26,7 @@
 
         <Label Content="Gerer les rapports" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="30"/>
         
-        <WrapPanel Grid.Column="0" Grid.Row="1" Margin="0,10,0,0">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,10,0,0">
             <Label Content="Periode du rapport"/>
             <ComboBox Name="ComboBoxPeriode" Width="150">
                 <ComboBoxItem>Hebdomadaire</ComboBoxItem>
@@ -35,22 +35,22 @@
                 <ComboBoxItem>Semestrielle</ComboBoxItem>
                 <ComboBoxItem>Annuelle</ComboBoxItem>
             </ComboBox>
-        </WrapPanel>
+        </StackPanel>
 
-        <WrapPanel Grid.Column="0" Grid.Row="2" Margin="0,10,0,0">
+        <StackPanel Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="0,10,0,0">
             <Label Content="Date de generation"/>
-            <DatePicker Name="DatePickerDateGeneration" Width="150"/>
-        </WrapPanel>
+            <DatePicker Name="DatePickerDateGeneration" Width="150" />
+        </StackPanel>
 
-        <WrapPanel Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
+        <StackPanel HorizontalAlignment="Center"  Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
             <Label Content="Employe"/>
             <ComboBox IsEditable="True" Name="ComboBoxEmploye" Width="200" DisplayMemberPath="Nom" SelectedValuePath="IdEmploye" ItemsSource="{Binding Source={StaticResource employeViewSource}}"/>
-        </WrapPanel>
+        </StackPanel>
 
-        <DockPanel Grid.Column="1" Grid.Row="2" Margin="0,10,5,0" Height="150">
+        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="0,10,5,0" Height="150">
             <Label Content="Contenu"/>
-            <RichTextBox x:Name="RichTextBoxContenuRapport"/>
-        </DockPanel>
+            <RichTextBox x:Name="RichTextBoxContenuRapport" Width="200"/>
+        </StackPanel>
 
         <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0">
             <Button Content="Generer" Name="Btn_Generer" Margin="0,0,10,0" Width="100" Click="Btn_Generer_Click" RenderTransformOrigin="19.156,11.21"/>

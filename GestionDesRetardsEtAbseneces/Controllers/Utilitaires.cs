@@ -48,20 +48,25 @@ namespace GestionDesRetardsEtAbseneces.Controllers
             SessionUtilisateur.HeureConnexion = DateTime.MinValue;
 
             // Ouvrir la fenêtre de connexion
-            new MainWindow().Show();
+
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
             fenetreActuelle.Close();
+
         }
 
 
-        public static DispatcherTimer timerInactivite = new ();
+        public static DispatcherTimer timerInactivite = new();
         public static void InitialiserTimer(Window fenetreAtuelle)
         {
+            timerInactivite.Stop();
             timerInactivite = new DispatcherTimer
             {
-                Interval = TimeSpan.FromMinutes(5) // Temps limite
+                Interval = TimeSpan.FromMinutes(5)
             };
             timerInactivite.Tick += (s, e) => Deconnexion(fenetreAtuelle);
             timerInactivite.Start();
         }
+
     }
 }

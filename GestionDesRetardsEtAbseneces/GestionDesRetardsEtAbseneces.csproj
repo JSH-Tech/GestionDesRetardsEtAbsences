@@ -9,9 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fenetres\pmlogo.webp" />
     <None Remove="Images\logo.jpeg" />
     <None Remove="Images\notificon.png" />
     <None Remove="Images\password.png" />
+    <None Remove="Images\pmlogo.webp" />
     <None Remove="Images\user.png" />
   </ItemGroup>
 
@@ -25,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fenetres\pmlogo.webp" />
     <Resource Include="Images\logo.jpeg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -32,6 +35,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\password.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\pmlogo.webp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\user.png">

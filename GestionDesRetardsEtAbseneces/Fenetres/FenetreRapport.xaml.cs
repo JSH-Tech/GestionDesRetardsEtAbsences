@@ -83,7 +83,6 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             Btn_Modifier.IsEnabled = false;
             Btn_Supprimer.IsEnabled = false;
             Btn_Imprimer.IsEnabled = false;
-            ViderChamps();
         }
 
 
@@ -104,8 +103,8 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 Btn_Modifier.IsEnabled = DatagridRapport.SelectedItem != null;
                 Btn_Supprimer.IsEnabled = DatagridRapport.SelectedItem != null;
                 Btn_Imprimer.IsEnabled = DatagridRapport.SelectedItem != null;
-                ComboBoxPeriode.SelectedItem = rapportassiduite.PeriodeRapport;
-                ComboBoxEmploye.SelectedValue = rapportassiduite.IdEmployeNavigation.Nom;
+                ComboBoxPeriode.Text = rapportassiduite.PeriodeRapport;
+                ComboBoxEmploye.SelectedValue = rapportassiduite.IdEmploye;
                 DatePickerDateGeneration.SelectedDate = rapportassiduite.DateGeneration;
                 //RichTextBoxContenuRapport.Document.Blocks.Clear();
                 RichTextBoxContenuRapport.Document.Blocks.Add(new Paragraph(new Run(rapportassiduite.ContenuRapport)));
@@ -119,6 +118,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             ComboBoxEmploye.SelectedIndex = -1;
             DatePickerDateGeneration.SelectedDate = null;
             RichTextBoxContenuRapport.Document.Blocks.Clear();
+            Window_Loaded(this, new RoutedEventArgs());
         }
         //Generation du rapport
         private void Btn_Generer_Click(object sender, RoutedEventArgs e)
@@ -164,6 +164,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         private void Btn_Actualiser_Click(object sender, RoutedEventArgs e)
         {
             ViderChamps();
+
         }
 
         /// <summary>
