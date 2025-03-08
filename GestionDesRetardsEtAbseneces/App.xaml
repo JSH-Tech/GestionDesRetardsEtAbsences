@@ -13,7 +13,7 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="White"/>
         </Style>
-        
+
         <Style x:Key="StyledButton" TargetType="Button">
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="40"/>
@@ -33,9 +33,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="10"
-                            Padding="10"
-                            BorderBrush="Transparent">
+              CornerRadius="10"
+              Padding="10"
+              BorderBrush="Transparent">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -50,6 +50,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
     </Application.Resources>
 </Application>

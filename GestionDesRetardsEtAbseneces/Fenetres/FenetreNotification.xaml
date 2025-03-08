@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="NOTIFICATIONS" Height="450" Width="Auto" >
+        Title="NOTIFICATIONS" Height="700" Width="800" Background="AliceBlue" >
     <Window.Resources>
         <CollectionViewSource x:Key="notificationViewSource"/>
         <CollectionViewSource x:Key="employeViewSource"/>
@@ -25,6 +25,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Content="Gerer les notifications" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="30"/>
+        
 
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="0" Grid.Row="1"  >
             <Label Content="Type de notification"/>
@@ -56,11 +57,11 @@
 
         <DataGrid ItemsSource="{Binding Source={StaticResource notificationViewSource}}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" Margin="0,10,0,0" HorizontalAlignment="Center" Name="DataGrid_Notification" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" SelectionChanged="DataGrid_Notification_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding TypeNotification}" Header="Type de notification" Width="150"/>
-                <DataGridTextColumn Binding="{Binding DateEnvoi}" Header="Date d'envoie" Width="150"/>
-                <DataGridTextColumn Binding="{Binding MessageNotification}" Header="Message" Width="150"/>
-                <DataGridTextColumn Binding="{Binding IdEmployeNavigation.Nom}" Header="Employe" Width="150"/>
-                <DataGridTextColumn Binding="{Binding StatutText}" Header="Status" Width="150"/>
+                <DataGridTextColumn Binding="{Binding TypeNotification}" Header="📢 Type de notification" Width="150"/>
+                <DataGridTextColumn Binding="{Binding DateEnvoi}" Header="📅 Date d'envoie" Width="150"/>
+                <DataGridTextColumn Binding="{Binding MessageNotification}" Header="✉️ Message" Width="150"/>
+                <DataGridTextColumn Binding="{Binding IdEmployeNavigation.Nom}" Header="👤 Employe" Width="150"/>
+                <DataGridTextColumn Binding="{Binding StatutText}" Header="✅ Status" Width="150"/>
             </DataGrid.Columns>
         </DataGrid>
 
