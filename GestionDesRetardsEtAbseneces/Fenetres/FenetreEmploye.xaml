@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
-        Title="FenetreEmploye" Height="450" Width="800" Background="AliceBlue">
+        Title="FenetreEmploye" Height="800" Width="1000" Background="AliceBlue">
     <Grid Margin="10">
 
         <!-- En-tête -->
         <Border Background="#1F618D" Height="60" VerticalAlignment="Top" CornerRadius="10">
             <TextBlock Text="Gestion des Employés" Foreground="White" FontSize="24" FontWeight="Bold" 
-           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
+
         <Grid Margin="0,80,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
 
             <!-- Formulaire -->
             <Border Background="White" Padding="20" CornerRadius="10" BorderBrush="#F7F9FF" BorderThickness="1" Grid.Row="0">
@@ -28,6 +28,10 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Ajout pour messages d'erreur -->
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -36,73 +40,67 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
+                    <!-- Nom -->
                     <TextBlock Text="Nom :" FontWeight="Bold" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
                     <TextBox x:Name="txtNom" Height="30" BorderBrush="#2980B9" Grid.Column="1" Grid.Row="0" Margin="5"/>
+                    <TextBlock x:Name="txtNomErreur" Foreground="Red" FontSize="12" Grid.Column="1" Grid.Row="1" Visibility="Collapsed"/>
 
+                    <!-- Prénom -->
                     <TextBlock Text="Prénom :" FontWeight="Bold" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"/>
                     <TextBox x:Name="txtPrenom" Height="30" BorderBrush="#2980B9" Grid.Column="3" Grid.Row="0" Margin="5"/>
+                    <TextBlock x:Name="txtPrenomErreur" Foreground="Red" FontSize="12" Grid.Column="3" Grid.Row="1" Visibility="Collapsed"/>
 
-                    <TextBlock Text="Email :" FontWeight="Bold" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtEmail" Height="30" BorderBrush="#2980B9" Grid.Column="1" Grid.Row="1" Margin="5"/>
+                    <!-- Email -->
+                    <TextBlock Text="Email :" FontWeight="Bold" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtEmail" Height="30" BorderBrush="#2980B9" Grid.Column="1" Grid.Row="2" Margin="5"/>
+                    <TextBlock x:Name="txtEmailErreur" Foreground="Red" FontSize="12" Grid.Column="1" Grid.Row="3" Visibility="Collapsed"/>
 
-                    <TextBlock Text="Mot de passe :" FontWeight="Bold" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"/>
-                    <PasswordBox x:Name="MotDePasse" Height="30" BorderBrush="#2980B9" Grid.Column="3" Grid.Row="1" Margin="5"/>
+                    <!-- Mot de passe -->
+                    <TextBlock Text="Mot de passe :" FontWeight="Bold" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"/>
+                    <PasswordBox x:Name="MotDePasse" Height="30" BorderBrush="#2980B9" Grid.Column="3" Grid.Row="2" Margin="5"/>
+                    <TextBlock x:Name="txtMotDePasseErreur" Foreground="Red" FontSize="12" Grid.Column="3" Grid.Row="3" Visibility="Collapsed"/>
 
-                    <TextBlock Text="Rôle :" FontWeight="Bold" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
-                    <ComboBox x:Name="RoleComboBox" Height="30" Grid.Column="1" Grid.Row="2" Margin="5">
+                    <!-- Rôle -->
+                    <TextBlock Text="Rôle :" FontWeight="Bold" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="RoleComboBox" Height="30" Grid.Column="1" Grid.Row="4" Margin="5">
                         <ComboBoxItem Content="RH"/>
                         <ComboBoxItem Content="Employé"/>
                         <ComboBoxItem Content="Manager"/>
                         <ComboBoxItem Content="Administrateur"/>
                     </ComboBox>
+                    <TextBlock x:Name="txtRoleErreur" Foreground="Red" FontSize="12" Grid.Column="1" Grid.Row="5" Visibility="Collapsed"/>
 
-                    <TextBlock Text="Statut :" FontWeight="Bold" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"/>
-                    <ComboBox x:Name="StatutComboBox" Height="30" Grid.Column="3" Grid.Row="2" Margin="5">
+                    <!-- Statut -->
+                    <TextBlock Text="Statut :" FontWeight="Bold" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="StatutComboBox" Height="30" Grid.Column="3" Grid.Row="4" Margin="5">
                         <ComboBoxItem Content="Actif"/>
                         <ComboBoxItem Content="En congé"/>
                         <ComboBoxItem Content="Suspendu"/>
                     </ComboBox>
+                    <TextBlock x:Name="txtStatutErreur" Foreground="Red" FontSize="12" Grid.Column="3" Grid.Row="5" Visibility="Collapsed"/>
                 </Grid>
             </Border>
 
             <!-- Boutons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Margin="10">
-                <Button x:Name="btnAjouter" Width="100" Height="40" Background="#27AE60" Foreground="White" FontWeight="Light"
-                Margin="5 " Click="btnAjouter_Click" Style="{StaticResource StyledButton}" >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="✅ " />
-                        <TextBlock Text="Ajouter" />
-                    </StackPanel>
-                </Button>
-                <Button x:Name="btnModifier" Width="100" Height="40" Background="#3498DB" Foreground="White" FontWeight="Light" 
-                Margin="5" IsEnabled="False"  Click="btnModifier_Click"  >
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="✏️ " />
-                        <TextBlock Text="Modifier" />
-                    </StackPanel>
-                </Button>
-                <Button x:Name="btnAnnuler" Width="100" Height="40" Background="red" Foreground="White" FontWeight="Light"
-                Margin="5"  Click="btnAnnuler_Click"  Style="{StaticResource StyledButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="❌ " />
-                        <TextBlock Text="Annuler" />
-                    </StackPanel>
-                </Button>
+                <Button x:Name="btnAjouter" Content="✅ Ajouter" Width="120" Height="40" Background="#27AE60" Foreground="White"
+                     FontWeight="Bold" Click="btnAjouter_Click" Style="{StaticResource StyledButton}"/>
+                <Button x:Name="btnModifier" Content="✏️ Modifier" Width="120" Height="40" Background="#3498DB" Foreground="White"
+                     FontWeight="Bold" Click="btnModifier_Click" IsEnabled="False"/>
+                <Button x:Name="btnAnnuler" Content="❌ Annuler" Width="120" Height="40" Background="Red" Foreground="White"
+                     FontWeight="Bold" Click="btnAnnuler_Click" Style="{StaticResource StyledButton}"/>
             </StackPanel>
 
             <!-- Tableau des employés -->
-            <DataGrid x:Name="EmployeDataGrid" AutoGenerateColumns="False" SelectionChanged="EmployeDataGrid_SelectionChanged"
-              HeadersVisibility="Column" Background="White"
-              BorderBrush="AliceBlue" BorderThickness="1"
-              SelectionMode="Single" AlternationCount="2"
-              RowBackground="WhiteSmoke" AlternatingRowBackground="#D6EAF8"
-              FontSize="14" FontWeight="Bold"
-              CanUserResizeColumns="True" CanUserResizeRows="False"
-              CanUserSortColumns="True" IsReadOnly="True"
-              ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
-              Grid.Row="2" VerticalAlignment="Top"
-              HorizontalContentAlignment="Stretch"
-              VerticalContentAlignment="Stretch">
+            <DataGrid x:Name="EmployeDataGrid" AutoGenerateColumns="False" SelectionChanged="EmployeDataGrid_SelectionChanged" 
+                   HeadersVisibility="Column" Background="White"   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                   BorderBrush="AliceBlue" BorderThickness="1"
+                   SelectionMode="Single" AlternationCount="2"
+                   RowBackground="WhiteSmoke" AlternatingRowBackground="#D6EAF8"
+                   FontSize="14" FontWeight="Bold"
+                   CanUserResizeColumns="True" CanUserResizeRows="False"
+                   CanUserSortColumns="True" IsReadOnly="True"
+                   Grid.Row="2">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*"/>
                     <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="*"/>
@@ -110,8 +108,8 @@
                     <DataGridTextColumn Header="Rôle" Binding="{Binding RoleEmploye}" Width="*"/>
                     <DataGridTextColumn Header="Statut" Binding="{Binding Statut}" Width="*"/>
                 </DataGrid.Columns>
-
             </DataGrid>
+
         </Grid>
     </Grid>
 </Window>
