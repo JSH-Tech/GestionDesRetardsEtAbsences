@@ -1,18 +1,7 @@
-﻿using GestionDesRetardsEtAbseneces.Model;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GestionDesRetardsEtAbseneces.Controllers;
+using GestionDesRetardsEtAbseneces.Model;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace GestionDesRetardsEtAbseneces.Fenetres
 {
@@ -22,18 +11,25 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
     public partial class fenetreRetards : Window
     {
         private DbGestgrhContext _context;
+
         public fenetreRetards()
         {
             InitializeComponent();
             // Connexion à la base de données
             _context = new DbGestgrhContext(); 
             ChargerEmployes();
+            if (Utilitaires.timerInactivite.IsEnabled)
+            {
+                Utilitaires.timerInactivite.Stop();
+            }
+            Utilitaires.InitialiserTimer(this);
         }
         private void ChargerEmployes()
         {
             cmbEmploye.ItemsSource = _context.Employes.ToList();
             cmbEmploye.DisplayMemberPath = "Nom";
             cmbEmploye.SelectedValuePath = "IdEmploye";
+            DataGrid_Retard.ItemsSource=_context.Retards.ToList();
         }
 
      
@@ -60,6 +56,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             _context.Retards.Add(retard);
             _context.SaveChanges();
             MessageBox.Show("Retard ajouté avec succès !");
+            ViderChamps();
         }
 
           /// Modifie un retard existant dans la base de données
@@ -86,6 +83,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
             _context.SaveChanges();
             MessageBox.Show("Retard modifié avec succès !");
+            ViderChamps();
         }
 
         
@@ -109,7 +107,41 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             _context.Retards.Remove(retard);
             _context.SaveChanges();
             MessageBox.Show("Retard supprimé avec succès !");
+            ViderChamps();
         }
-    
-}
+
+        private void DataGrid_Retard_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+            if (DataGrid_Retard.SelectedItem is Retard retard)
+            {
+                cmbEmploye.SelectedValue = retard.IdEmploye;
+                dpDateRetard.SelectedDate = retard.DateRetard;
+                txtHeureDebut.Text=retard.HeureDebut.ToString();
+                txtHeureFin.Text=retard.HeureFin.ToString();
+                txtJustification.Text = retard.Justification;
+            }
+            else
+            {
+                ViderChamps();
+                return;
+            }
+        }
+
+        //Vider les champs de saisies
+        public void ViderChamps()
+        {
+            cmbEmploye.SelectedValue = null;
+            dpDateRetard.SelectedDate = null;
+            txtHeureDebut.Clear();
+            txtHeureFin.Clear();
+            txtJustification.Clear();
+            chkValide.IsChecked = false;
+        }
+
+        private void Btn_Actualiser_Click(object sender, RoutedEventArgs e)
+        {
+            ViderChamps();
+        }
+    }
 }

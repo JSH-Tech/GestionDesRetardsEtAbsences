@@ -47,7 +47,7 @@
             <Button Content="🔔 Mes Notifications" Name="Btn_NotificationsEmploye" Grid.Row="2" Grid.Column="2"  Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_NotificationsEmploye_Click"/>
             <Button Content="📊 Tableau de Bord" Name="Btn_Dashboard" Grid.Row="3" Style="{StaticResource StyledButton}" Click="Btn_Dashboard_Click" />
             <Button Content="Deconnexion" Name="Btn_Deconnexion" Grid.Row="4" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_Deconnexion_Click" />
-            <Button Content="Suivi des absences" Name="Btn_Absence" Grid.Row="4" Style="{StaticResource StyledButton}"/>
+            <Button Content="Suivi des absences" Name="Btn_Absence" Grid.Row="4" Style="{StaticResource StyledButton}" Click="Btn_Absence_Click"/>
 
         </Grid>
     </Grid>

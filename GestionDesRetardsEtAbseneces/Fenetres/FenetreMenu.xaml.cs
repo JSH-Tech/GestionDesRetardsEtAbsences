@@ -26,7 +26,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        
+
         //Verifier les acces aux boutton
         public void VerifierAcces()
         {
@@ -92,6 +92,12 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         {
             FenetreConges fenetreConges = new();
             fenetreConges.Show();
+        }
+
+        private void Btn_Absence_Click(object sender, RoutedEventArgs e)
+        {
+            FenetreAbsence fenetreAbsence = new FenetreAbsence();   
+            fenetreAbsence.Show();
         }
     }
 }

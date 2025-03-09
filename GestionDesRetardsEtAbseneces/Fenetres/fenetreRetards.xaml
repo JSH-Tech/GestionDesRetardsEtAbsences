@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
-        Title="fenetreRetards" Height="450" Width="800" Background="#1F618D">
+        Title="fenetreRetards" Height="800" Width="Auto" Background="#1F618D">
+    
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,8 +14,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Gestion des Retards" FontSize="20" FontWeight="Bold" Foreground="#2C3E50"
@@ -50,7 +52,7 @@
         </StackPanel>
 
         <!-- Validation -->
-        <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="0,5">
+        <StackPanel Orientation="Vertical" Grid.Row="5" Margin="0,5" >
             <CheckBox Name="chkValide" Content="Validé" FontWeight="Bold"/>
         </StackPanel>
 
@@ -62,7 +64,22 @@
                     Foreground="White" FontWeight="Bold" BorderBrush="Transparent" Margin="10,0,0,0" Click="btnModifier_Click" Style="{StaticResource StyledButton}"/>
             <Button Name="btnSupprimer" Content="🗑️ Supprimer" Width="120" Height="40" Background="#E74C3C"
                     Foreground="White" FontWeight="Bold" BorderBrush="Transparent" Margin="10,0,0,0" Click="btnSupprimer_Click" Style="{StaticResource StyledButton}"/>
+            <Button Content="🔃Actualiser" Name="Btn_Actualiser" Margin="10,0,00,0" Width="100" Background="#8E44AD"
+        Style="{StaticResource StyledButton}" Click="Btn_Actualiser_Click"/>
         </StackPanel>
+        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="Auto" Width="Auto">-->
+            <DataGrid  Grid.Row="7" Name="DataGrid_Retard" Margin="5" AutoGenerateColumns="False" SelectionChanged="DataGrid_Retard_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding IdEmployeNavigation.Nom}" Width="150"/>
+                    <!--<DataGridTextColumn Header="Prénom" Binding="{Binding IdEmplyeNavigation.Prenom}" Width="150"/>-->
+                    <DataGridTextColumn Header="Heure debut retard" Binding="{Binding HeureDebut}" Width="150"/>
+                    <DataGridTextColumn Header="Heure Fin retards" Binding="{Binding HeureFin}" Width="150"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding DateRetard}" Width="150"/>
+                    <DataGridTextColumn Header="Status de la Justification" Binding="{Binding Justification }" Width="150"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Valide}" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        <!--</StackPanel>-->
     </Grid>
 
 </Window>

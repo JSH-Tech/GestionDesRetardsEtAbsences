@@ -49,7 +49,7 @@
                 <lvc:CartesianChart x:Name="AbsencesChart" Margin="5"/>
             </StackPanel>
         </Border>
-        <Border Grid.Row="4" Grid.Column="0" CornerRadius="8" Background="White" BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" Height="155">
+        <Border Grid.Row="4" Grid.Column="0" CornerRadius="8" Background="White" BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" Height="Auto">
             <StackPanel Height="150" Orientation="Horizontal">
                 <!--<TextBlock Text="Employé" FontSize="16" />-->
                 <Label FontWeight="Bold" Margin="5" Content="Employé" VerticalAlignment="Top"/>

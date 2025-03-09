@@ -25,8 +25,9 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
-
-        <Label Content="Gestion des absences" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="30"/>
+        <Border Background="#1F618D" CornerRadius="5" Width="500" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+            <Label Content="Gestion des absences" FontSize="20" HorizontalAlignment="Center"/>
+        </Border>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -88,10 +89,14 @@
                 <ColumnDefinition Width="100"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="Btn_Ajouter" Content="Ajouter" Grid.Column="0" Margin="5" Click="Btn_Ajouter_Click"/>
-            <Button Name="Btn_Modifier" Content="Modifier" Grid.Column="1" Margin="5" Click="Btn_Modifier_Click"/>
-            <Button x:Name="Btn_Supprimer" Content="Supprimer" Grid.Column="2" Margin="5" Click="Btn_Supprimer_Click"/>
-            <Button x:Name="Btn_Actualiser" Content="Actualiser" Grid.Column="3" Margin="5" Click="Btn_Actualiser_Click"/>
+
+
+            <Button Background="#27AE60" Foreground="White" FontWeight="Bold" x:Name="Btn_Ajouter" Content="✅Ajouter" Grid.Column="0" Margin="5" Click="Btn_Ajouter_Click" />
+            <Button Background="#3498DB" Foreground="White" FontWeight="Bold" Name="Btn_Modifier" Content="✏️Modifier" Grid.Column="1" Margin="5" Click="Btn_Modifier_Click"/>
+            <Button Background="Red" Foreground="White" FontWeight="Bold" x:Name="Btn_Supprimer" Content="🚮Supprimer" Grid.Column="2" Margin="5" Click="Btn_Supprimer_Click"/>
+            <Button Background="#8E44AD" Foreground="White" FontWeight="Bold" x:Name="Btn_Actualiser" Content="🔃Actualiser" Grid.Column="3" Margin="5" Click="Btn_Actualiser_Click"/>
+
+
         </Grid>
 
         <Grid Grid.Row="4" Grid.ColumnSpan="3">

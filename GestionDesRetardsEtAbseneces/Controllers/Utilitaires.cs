@@ -62,7 +62,7 @@ namespace GestionDesRetardsEtAbseneces.Controllers
             timerInactivite.Stop();
             timerInactivite = new DispatcherTimer
             {
-                Interval = TimeSpan.FromMinutes(5)
+                Interval = TimeSpan.FromMinutes(0.5)
             };
             timerInactivite.Tick += (s, e) => Deconnexion(fenetreAtuelle);
             timerInactivite.Start();
