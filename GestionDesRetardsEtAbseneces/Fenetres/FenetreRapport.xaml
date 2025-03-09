@@ -86,10 +86,10 @@
                CanUserResizeColumns="True" CanUserResizeRows="False"
                CanUserSortColumns="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Période" Width="150" Binding="{Binding PeriodeRapport}"/>
-                    <DataGridTextColumn Header="Date" Width="150" Binding="{Binding DateGeneration}"/>
-                    <DataGridTextColumn Header="Contenu" Width="200" Binding="{Binding ContenuRapport}"/>
-                    <DataGridTextColumn Header="Employé" Width="150" Binding="{Binding IdEmployeNavigation.Nom}"/>
+                    <DataGridTextColumn Header="Période" Width="250" Binding="{Binding PeriodeRapport}"/>
+                    <DataGridTextColumn Header="Date" Width="250" Binding="{Binding DateGeneration}"/>
+                    <DataGridTextColumn Header="Contenu" Width="350" Binding="{Binding ContenuRapport}"/>
+                    <DataGridTextColumn Header="Employé" Width="300" Binding="{Binding IdEmployeNavigation.Nom}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
