@@ -82,10 +82,10 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             fenetreDashboard.Show();
         }
 
-        private void Btn_Absence_Click(object sender, RoutedEventArgs e)
+        private void Btn_Retard_Click(object sender, RoutedEventArgs e)
         {
-            FenetreAbsence fenetreAbsence = new FenetreAbsence();
-            fenetreAbsence.Show();
+            fenetreRetards fenetreRetards = new fenetreRetards();
+            fenetreRetards.ShowDialog();
         }
 
         private void Btn_DemandeConges_Click(object sender, RoutedEventArgs e)
