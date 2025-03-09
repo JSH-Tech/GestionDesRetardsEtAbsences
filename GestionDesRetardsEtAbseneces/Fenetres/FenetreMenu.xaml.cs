@@ -51,8 +51,6 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
         private void Btn_Employes_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
-
             FenetreEmploye fenetreEmploye = new FenetreEmploye();
             fenetreEmploye.ShowDialog();
 
@@ -88,6 +86,12 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         {
             FenetreAbsence fenetreAbsence = new FenetreAbsence();
             fenetreAbsence.Show();
+        }
+
+        private void Btn_DemandeConges_Click(object sender, RoutedEventArgs e)
+        {
+            FenetreConges fenetreConges = new();
+            fenetreConges.Show();
         }
     }
 }
