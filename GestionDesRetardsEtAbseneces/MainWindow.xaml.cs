@@ -15,8 +15,6 @@ namespace GestionDesRetardsEtAbseneces
         public MainWindow()
         {
             InitializeComponent();
-            Utilitaires.InitialiserTimer(this);
-
         }
         /// <summary>
         /// Fonctionnalité de connexion
@@ -32,7 +30,9 @@ namespace GestionDesRetardsEtAbseneces
             {
                 try
                 {
-                    sessionEtAuthentification.MettreAJourAuthentification(employeConnecter.IdEmploye);
+
+                     sessionEtAuthentification.MettreAJourAuthentification(employeConnecter.IdEmploye);
+
                     FenetreMenu fenetreMenu = new();
                     fenetreMenu.Show();
                     this.Close(); // Ferme la fenêtre de connexion
