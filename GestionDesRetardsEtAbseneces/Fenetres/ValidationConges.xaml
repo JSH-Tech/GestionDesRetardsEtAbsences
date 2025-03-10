@@ -1,0 +1,58 @@
+﻿<Window x:Class="GestionDesRetardsEtAbseneces.Fenetres.ValidationConges"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
+        mc:Ignorable="d"
+        Background="AliceBlue"
+        Title="ValidationConges" Height="450" Width="800">
+    
+    <Grid>
+        <StackPanel Orientation="Vertical">   
+        <Border Background="#1F618D" Height="60" VerticalAlignment="Top" CornerRadius="10" Grid.ColumnSpan="2">
+            <Label  Grid.Row="0" Foreground="White"  Content="Liste des demandes de congé" FontWeight="Bold" Margin="0,0,0,0" FontSize="24"   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        </Border>
+            <DataGrid Width="Auto" Name="DemandeCongeDataGrid" HorizontalAlignment="Stretch" Grid.Row="6" AutoGenerateColumns="False" 
+                    BorderBrush="AliceBlue" BorderThickness="1"
+                     SelectionMode="Single" AlternationCount="2"
+                     ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                     RowBackground="WhiteSmoke" AlternatingRowBackground="#D6EAF8"
+                     FontSize="14" FontWeight="Bold"
+                     CanUserResizeColumns="True" CanUserResizeRows="False"
+                     CanUserSortColumns="True" >
+            <DataGrid.Columns>
+                <!-- Ajouter des colonnes pour le nom et le prénom de l'employé -->
+                <DataGridTextColumn Width="*" Header="Nom" Binding="{Binding Nom}" />
+                <DataGridTextColumn Width="*" Header="Prénom" Binding="{Binding Prenom}" />
+
+                <DataGridTextColumn Width="*" Header="Type de congé" Binding="{Binding TypeConge}" />
+                <DataGridTextColumn Width="*" Header="Date début" Binding="{Binding DateDebut}" />
+                <DataGridTextColumn Width="*" Header="Date fin" Binding="{Binding DateFin}" />
+                <DataGridTextColumn Width="*" Header="Justification" Binding="{Binding Justification}" />
+
+                <DataGridTemplateColumn Header="Statut" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Statut}" FontSize="16" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Actions" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Style="{StaticResource StyledButton}"  FontSize="12" Background="Green" Content="Approuver" Width="70" IsEnabled="True" Margin="5" Click="Btn_Approuver_Click" Tag="{Binding IdDemande}"/>
+                                    <Button Style="{StaticResource StyledButton}"  FontSize="12" Background="Red" Content="Refuser" Width="70" IsEnabled="True" Margin="5" Click="Btn_Refuser_Click" Tag="{Binding IdDemande}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+      </StackPanel>
+    </Grid>
+</Window>

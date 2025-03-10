@@ -89,5 +89,18 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             FenetreAbsence fenetreAbsence = new FenetreAbsence();
             fenetreAbsence.Show();
         }
+
+        private void Btn_DemandeConges_Click(object sender, RoutedEventArgs e)
+        {
+            FenetreConges fenetreConges = new FenetreConges();
+            fenetreConges.Show();
+        }
+
+        private void Btn_ValidationConges_Click(object sender, RoutedEventArgs e)
+        {
+
+            ValidationConges validationConges = new ValidationConges();
+            validationConges.Show();
+        }
     }
 }

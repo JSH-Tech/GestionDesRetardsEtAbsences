@@ -41,8 +41,8 @@
             <Image Grid.Column="1" Source="/Fenetres/pmlogo.webp" Grid.RowSpan="5"/>
             <!-- Colonne 2 -->
             <Button Content="📑 Rapports " Name="Btn_Rapports" Grid.Row="0" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_Rapports_Click" />
-            <Button Content="📅 Demande de Congés" Name="Btn_DemandeConges" Grid.Row="1" Grid.Column="2" Style="{StaticResource StyledButton}" />
-            <Button Content="✅ Validation des Congés" Name="Btn_ValidationConges" Grid.Row="3" Grid.Column="2" Style="{StaticResource StyledButton}" />
+            <Button Content="📅 Demande de Congés" Name="Btn_DemandeConges" Grid.Row="1" Grid.Column="2" Style="{StaticResource StyledButton}" Height="40" Margin="60,12,60,0" VerticalAlignment="Top" Click="Btn_DemandeConges_Click" />
+            <Button Content="✅ Validation des Congés" Name="Btn_ValidationConges" Grid.Row="3" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_ValidationConges_Click" />
             <Button Content="🔔 Centre de Notifications" Name="Btn_Notifications" Grid.Row="2" Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_Notifications_Click"/>
             <Button Content="🔔 Mes Notifications" Name="Btn_NotificationsEmploye" Grid.Row="2" Grid.Column="2"  Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_NotificationsEmploye_Click"/>
             <Button Content="📊 Tableau de Bord" Name="Btn_Dashboard" Grid.Row="3" Style="{StaticResource StyledButton}" Click="Btn_Dashboard_Click" />

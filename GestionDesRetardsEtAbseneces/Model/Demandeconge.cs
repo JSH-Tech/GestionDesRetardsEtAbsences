@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace GestionDesRetardsEtAbseneces.Model;
 
@@ -20,4 +22,9 @@ public partial class Demandeconge
     public string? Statut { get; set; }
 
     public virtual Employe IdEmployeNavigation { get; set; } = null!;
+
+ 
+
+
 }
+
