@@ -6,21 +6,20 @@
         xmlns:local="clr-namespace:GestionDesRetardsEtAbseneces.Fenetres"
         mc:Ignorable="d"
         Title="FenetreMenu" Height="700" Width="1000" Background="AliceBlue">
-    
+
     <Grid Margin="20">
-        <!-- Définition des lignes -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Titre centré -->
-        <Label x:Name="LabelBienvenu" Content="Bienvenue !" 
+        <!-- Titre avec un cadre stylisé -->
+        <Label x:Name="LabelBienvenu"  
                Grid.Row="0" FontSize="24" FontWeight="Bold" Foreground="Black"
                HorizontalAlignment="Center" Margin="10"/>
 
-        <!-- Section des boutons -->
+        <!-- Section principale -->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -35,20 +34,38 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Colonne 1 -->
-            <Button Content="👤 Gestion des Employés" Name="Btn_Employes" Grid.Row="0" Grid.Column="0" Style="{StaticResource StyledButton}" Click="Btn_Employes_Click"/>
-            <Button Content="⏳ Suivi des Retards" Name="Btn_Retard" Grid.Row="1" Grid.Column="0" Style="{StaticResource StyledButton}" Click="Btn_Retard_Click" />
-            <Image Grid.Column="1" Source="/Fenetres/pmlogo.webp" Grid.RowSpan="5"/>
-            <!-- Colonne 2 -->
-            <Button Content="📑 Rapports " Name="Btn_Rapports" Grid.Row="0" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_Rapports_Click" />
-            <Button Content="📅 Demande de Congés" Name="Btn_DemandeConges" Grid.Row="1" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_DemandeConges_Click" />
-            <Button Content="✅ Validation des Congés" Name="Btn_ValidationConges" Grid.Row="3" Grid.Column="2" Style="{StaticResource StyledButton}" />
-            <Button Content="🔔 Centre de Notifications" Name="Btn_Notifications" Grid.Row="2" Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_Notifications_Click"/>
-            <Button Content="🔔 Mes Notifications" Name="Btn_NotificationsEmploye" Grid.Row="2" Grid.Column="2"  Style="{StaticResource StyledButton}" HorizontalAlignment="Center" Click="Btn_NotificationsEmploye_Click"/>
-            <Button Content="📊 Tableau de Bord" Name="Btn_Dashboard" Grid.Row="3" Style="{StaticResource StyledButton}" Click="Btn_Dashboard_Click" />
-            <Button Content="Deconnexion" Name="Btn_Deconnexion" Grid.Row="4" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_Deconnexion_Click" />
-            <Button Content="Suivi des absences" Name="Btn_Absence" Grid.Row="4" Style="{StaticResource StyledButton}" Click="Btn_Absence_Click"/>
+            <!-- Boutons stylisés -->
+            <Button x:Name="Btn_Employes"  Content="👤 Gestion des Employés" Grid.Row="0" Grid.Column="0" Style="{StaticResource StyledButton}" Click="Btn_Employes_Click"/>
+            <Button  x:Name="Btn_Retard" Content="⏳ Suivi des Retards" Grid.Row="1" Grid.Column="0" Style="{StaticResource StyledButton}" Click="Btn_Retard_Click"/>
 
+            <!-- Image animée -->
+            <Image Grid.Column="1" Source="/Images/pi.jpg" Grid.RowSpan="5" Name="MainImage" Opacity="0"/>
+
+            <Button x:Name="Btn_Rapports"  Content="📑 Rapports " Grid.Row="0" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_Rapports_Click"/>
+            <Button  Content="📅 Demande de Congés" Grid.Row="1" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_DemandeConges_Click"/>
+            <Button  x:Name="Btn_ValidationConges"  Content="✅ Validation des Congés" Grid.Row="3" Grid.Column="2" Style="{StaticResource StyledButton}" />
+            <Button x:Name="Btn_Notifications" Content="🔔 Mes Notifications" Grid.Row="2" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_NotificationsEmploye_Click"/>
+            <Button  x:Name="Btn_Dashboard" Content="📊 Tableau de Bord" Grid.Row="3" Style="{StaticResource StyledButton}" Click="Btn_Dashboard_Click"/>
+            <Button Content="Deconnexion" Grid.Row="4" Grid.Column="2" Style="{StaticResource StyledButton}" Click="Btn_Deconnexion_Click"/>
+            <Button x:Name="Btn_Absence" Content="⏱Suivi des absences" Grid.Row="4" Style="{StaticResource StyledButton}" Click="Btn_Absence_Click"/>
         </Grid>
+
+        <!-- Pied de page avec l'heure -->
+        <TextBlock Grid.Row="2" Name="FooterText" FontSize="14" Foreground="Gray" HorizontalAlignment="Center" Margin="10"/>
+
     </Grid>
+
+    <!-- Animation de l'image -->
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="MainImage" Storyboard.TargetProperty="Opacity"
+                                     From="0" To="1" Duration="0:0:2"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+
 </Window>
