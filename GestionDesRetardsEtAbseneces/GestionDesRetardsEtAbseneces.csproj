@@ -13,6 +13,7 @@
     <None Remove="Images\logo.jpeg" />
     <None Remove="Images\notificon.png" />
     <None Remove="Images\password.png" />
+    <None Remove="Images\pi.jpg" />
     <None Remove="Images\pmlogo.webp" />
     <None Remove="Images\user.png" />
   </ItemGroup>
@@ -37,6 +38,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\password.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\pi.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\pmlogo.webp">
