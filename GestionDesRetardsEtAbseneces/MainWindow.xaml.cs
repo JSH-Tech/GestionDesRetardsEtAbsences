@@ -15,8 +15,6 @@ namespace GestionDesRetardsEtAbseneces
         public MainWindow()
         {
             InitializeComponent();
-            Utilitaires.InitialiserTimer(this);
-
         }
         /// <summary>
         /// Fonctionnalité de connexion
@@ -27,22 +25,22 @@ namespace GestionDesRetardsEtAbseneces
         {
             string username = NomUser.Text;
             string password = MotDePasse.Password;
-            //Employe? employeConnecter = AuthentifierUtilisateur(username, password);
-            //if (employeConnecter is not null)
-            //{
-            //    try
-            //    {
-              //       sessionEtAuthentification.MettreAJourAuthentification(employeConnecter.IdEmploye);
+            Employe? employeConnecter = AuthentifierUtilisateur(username, password);
+            if (employeConnecter is not null)
+            {
+                try
+                {
+                     sessionEtAuthentification.MettreAJourAuthentification(employeConnecter.IdEmploye);
                     FenetreMenu fenetreMenu = new();
                     fenetreMenu.Show();
                     this.Close(); // Ferme la fenêtre de connexion
-            //    }
-            //    catch (Exception ex)
-            //    {
+                }
+                catch (Exception ex)
+                {
 
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //}
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void ForgotPassword_Click(object sender, RoutedEventArgs e)
