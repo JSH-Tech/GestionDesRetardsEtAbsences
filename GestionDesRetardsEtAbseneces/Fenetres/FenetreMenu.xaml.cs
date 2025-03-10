@@ -15,7 +15,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         {
             InitializeComponent();
             UpdateFooterTime();
-            LabelBienvenu.Content = " 💛 Bienvenue  ! 💛 " + SessionUtilisateur.Nom + " " + SessionUtilisateur.Prenom;
+            LabelBienvenu.Content = " 💛 Bienvenue " + SessionUtilisateur.Nom + " " + SessionUtilisateur.Prenom +" ! 💛";
             VerifierAcces();
             if (Utilitaires.timerInactivite.IsEnabled)
             {
