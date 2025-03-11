@@ -99,6 +99,13 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             FenetreAbsence fenetreAbsence = new FenetreAbsence();   
             fenetreAbsence.Show();
         }
+
+        private void Btn_ValidationConges_Click(object sender, RoutedEventArgs e)
+        {
+
+            ValidationConges validationConges = new ValidationConges();
+            validationConges.Show();
+        }
         private void UpdateFooterTime()
         {
             DispatcherTimer timer = new DispatcherTimer();
@@ -112,7 +119,6 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             FenetreRapport fenetreRapport = new FenetreRapport();  
             fenetreRapport.Show();
 
-            
         }
     }
 }
