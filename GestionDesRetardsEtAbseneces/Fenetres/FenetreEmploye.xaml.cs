@@ -182,7 +182,29 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             _selectedEmploye = null;
         }
 
+        //Supprimer un employe apres confirmation de l'utilisateur et aprea voir verifier si une ligne est selectionne dans la datagrid et si la ligne selectionner est un employer
+        private void Btn_Supprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedEmploye == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un employé à supprimer.");
+                return;
+            }
+            MessageBoxResult result = MessageBox.Show("Voulez-vous vraiment supprimer cet employé ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                _context.Employes.Remove(_selectedEmploye);
+                _context.SaveChanges();
+                _employes.Remove(_selectedEmploye);
+                MessageBox.Show("Employé supprimé avec succès !");
+                ViderFormulaire();
+            }
+            else
+            {
+                ViderFormulaire();
+                return;
+            }
 
-
+        }
     }
 }

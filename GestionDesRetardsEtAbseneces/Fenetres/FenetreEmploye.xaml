@@ -87,8 +87,11 @@
                      FontWeight="Bold" Click="btnAjouter_Click" Style="{StaticResource StyledButton}"/>
                 <Button x:Name="btnModifier" Content="✏️ Modifier" Width="120" Height="40" Background="#3498DB" Foreground="White"
                      FontWeight="Bold" Click="btnModifier_Click" IsEnabled="False"/>
-                <Button x:Name="btnAnnuler" Content="❌ Annuler" Width="120" Height="40" Background="Red" Foreground="White"
+                <Button Content="🚮Supprimer" Name="Btn_Supprimer" Margin="7,0,7,0" Width="100" Click="Btn_Supprimer_Click"  Background="Red"
+        Style="{StaticResource StyledButton}"/>
+                <Button x:Name="btnAnnuler" Content="❌ Annuler" Width="120" Height="40" Background="#8E44AD" Foreground="White"
                      FontWeight="Bold" Click="btnAnnuler_Click" Style="{StaticResource StyledButton}"/>
+                
             </StackPanel>
 
             <!-- Tableau des employés -->

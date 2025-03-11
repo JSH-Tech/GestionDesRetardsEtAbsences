@@ -1,22 +1,8 @@
 ﻿using GestionDesRetardsEtAbseneces.Controllers;
-﻿using GestionDesRetardsEtAbseneces.Model;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Microsoft.EntityFrameworkCore;
 using System.Data;
 namespace GestionDesRetardsEtAbseneces.Fenetres
 {
@@ -40,6 +26,9 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             DemandeCongeDataGrid.ItemsSource = _demandes;
             ChargerDemandes();
             _isEditing = false;
+            Demandes = new ObservableCollection<DemandeConge>();
+            this.DataContext = this;
+            ChargerDemandes();
 
             if (Utilitaires.timerInactivite.IsEnabled)
             {
