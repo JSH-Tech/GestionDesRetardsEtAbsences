@@ -31,7 +31,7 @@ namespace GestionDesRetardsEtAbseneces.Controllers
             }
         }
 
-        public static void Deconnexion(Window fenetreActuelle)
+        public static void Deconnexion()
         {
             // Arrêter le timer pour éviter qu'il tourne en arrière-plan
             if (timerInactivite.IsEnabled)
@@ -48,23 +48,34 @@ namespace GestionDesRetardsEtAbseneces.Controllers
             SessionUtilisateur.HeureConnexion = DateTime.MinValue;
 
             // Ouvrir la fenêtre de connexion
-
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            fenetreActuelle.Close();
 
+            // Fermer toutes les fenêtres ouvertes
+            foreach (var window in OpenWindows)
+            {
+                window.Close();
+            }
+
+            OpenWindows.Clear();
         }
 
 
         public static DispatcherTimer timerInactivite = new();
+        public static List<Window> OpenWindows = new List<Window>();
         public static void InitialiserTimer(Window fenetreAtuelle)
         {
+            if (!OpenWindows.Contains(fenetreAtuelle))
+            {
+                OpenWindows.Add(fenetreAtuelle);
+            }
+
             timerInactivite.Stop();
             timerInactivite = new DispatcherTimer
             {
                 Interval = TimeSpan.FromMinutes(0.5)
             };
-            timerInactivite.Tick += (s, e) => Deconnexion(fenetreAtuelle);
+            timerInactivite.Tick += (s, e) => Deconnexion();
             timerInactivite.Start();
         }
 

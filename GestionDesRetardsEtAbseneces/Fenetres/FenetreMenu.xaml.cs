@@ -22,7 +22,13 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
                 Utilitaires.timerInactivite.Stop();
             }
             Utilitaires.InitialiserTimer(this);
-            
+            this.MouseMove += ResetInactivityTimer;
+            this.KeyDown += ResetInactivityTimer;
+
+        }
+        private void ResetInactivityTimer(object sender, EventArgs e)
+        {
+            Utilitaires.InitialiserTimer(this);
         }
         /// <summary>
         /// Ouvre la fenetre de gestion des rapports
@@ -52,17 +58,14 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         private void Btn_Employes_Click(object sender, RoutedEventArgs e)
         {
             FenetreEmploye fenetreEmploye = new FenetreEmploye();
-            fenetreEmploye.ShowDialog();
-
-            this.Show();
+            fenetreEmploye.Show();
 
         }
 
         private void Btn_Notifications_Click(object sender, RoutedEventArgs e)
         {
             FenetreNotification fenetreNotification = new FenetreNotification();
-            fenetreNotification.ShowDialog();
-            this.Show();
+            fenetreNotification.Show();
         }
 
         private void Btn_NotificationsEmploye_Click(object sender, RoutedEventArgs e)
@@ -73,7 +76,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
 
         private void Btn_Deconnexion_Click(object sender, RoutedEventArgs e)
         {
-            Utilitaires.Deconnexion(this);
+            Utilitaires.Deconnexion();
         }
 
         private void Btn_Dashboard_Click(object sender, RoutedEventArgs e)
@@ -85,7 +88,7 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
         private void Btn_Retard_Click(object sender, RoutedEventArgs e)
         {
             fenetreRetards fenetreRetards = new fenetreRetards();
-            fenetreRetards.ShowDialog();
+            fenetreRetards.Show();
         }
 
         private void Btn_DemandeConges_Click(object sender, RoutedEventArgs e)

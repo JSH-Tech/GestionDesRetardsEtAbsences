@@ -32,9 +32,14 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             {
                 Utilitaires.timerInactivite.Stop();
             }
+            this.MouseMove += ResetInactivityTimer;
+            this.KeyDown += ResetInactivityTimer;
+
+        }
+        private void ResetInactivityTimer(object sender, EventArgs e)
+        {
             Utilitaires.InitialiserTimer(this);
         }
-
         /// <summary>
         /// Recuperer les informations saisies par l'utilisateur
         /// </summary>

@@ -15,6 +15,7 @@ namespace GestionDesRetardsEtAbseneces
         public MainWindow()
         {
             InitializeComponent();
+
         }
         /// <summary>
         /// Fonctionnalité de connexion

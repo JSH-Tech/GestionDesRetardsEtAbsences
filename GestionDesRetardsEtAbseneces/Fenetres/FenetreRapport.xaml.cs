@@ -34,9 +34,14 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             {
                 Utilitaires.timerInactivite.Stop();
             }
+            this.MouseMove += ResetInactivityTimer;
+            this.KeyDown += ResetInactivityTimer;
+
+        }
+        private void ResetInactivityTimer(object sender, EventArgs e)
+        {
             Utilitaires.InitialiserTimer(this);
         }
-
 
         //Recuperation des informations du rapport
         public (bool isValide, string? periodeRapport, int idEmploye, DateOnly deteGeneration, string contenuRapport)? RecupererInfos()

@@ -26,8 +26,17 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             ChargerDonneesTableauDeBord();
             AfficherGraphiqueAbsences();
             AfficherGraphiqueRetards();
-            Utilitaires.InitialiserTimer(this);
+            if (Utilitaires.timerInactivite.IsEnabled)
+            {
+                Utilitaires.timerInactivite.Stop();
+            }
+            this.MouseMove += ResetInactivityTimer;
+            this.KeyDown += ResetInactivityTimer;
 
+        }
+        private void ResetInactivityTimer(object sender, EventArgs e)
+        {
+            Utilitaires.InitialiserTimer(this);
         }
         private void ChargerDonneesTableauDeBord()
         {

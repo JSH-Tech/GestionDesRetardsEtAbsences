@@ -22,6 +22,12 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             {
                 Utilitaires.timerInactivite.Stop();
             }
+            this.MouseMove += ResetInactivityTimer;
+            this.KeyDown += ResetInactivityTimer;
+
+        }
+        private void ResetInactivityTimer(object sender, EventArgs e)
+        {
             Utilitaires.InitialiserTimer(this);
         }
         private void ChargerEmployes()

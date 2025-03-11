@@ -1,4 +1,5 @@
-﻿using GestionDesRetardsEtAbseneces.Model;
+﻿using GestionDesRetardsEtAbseneces.Controllers;
+using GestionDesRetardsEtAbseneces.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,13 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             InitializeComponent();
             _context = new DbGestgrhContext();
             ChargerDemandes();
+            this.MouseMove += ResetInactivityTimer;
+            this.KeyDown += ResetInactivityTimer;
+
+        }
+        private void ResetInactivityTimer(object sender, EventArgs e)
+        {
+            Utilitaires.InitialiserTimer(this);
         }
         private void ChargerDemandes()
         {
