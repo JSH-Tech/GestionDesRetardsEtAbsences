@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data;
+using GestionDesRetardsEtAbseneces.Model;
 namespace GestionDesRetardsEtAbseneces.Fenetres
 {
     /// <summary>
@@ -26,7 +27,6 @@ namespace GestionDesRetardsEtAbseneces.Fenetres
             DemandeCongeDataGrid.ItemsSource = _demandes;
             ChargerDemandes();
             _isEditing = false;
-            Demandes = new ObservableCollection<DemandeConge>();
             this.DataContext = this;
             ChargerDemandes();
 
