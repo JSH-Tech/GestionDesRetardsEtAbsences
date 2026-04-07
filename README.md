@@ -1,4 +1,4 @@
-# GestionDesRetardsEtAbseneces
+# Gestion Des Retards Et Absences
 Employee Attendance & Lateness Management System (C# / .NET, WPF, EF Core, SQL Server) / Academic Project – 2025 
 
 Designed and developed a desktop application to manage employee absences and lateness tracking in an organizational context. 
